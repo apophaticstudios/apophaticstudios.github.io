@@ -1,0 +1,14 @@
+{
+  "business": "rental-property investor tools",
+  "last_run_date": "2026-07-31",
+  "next_task": "seo_page",
+  "task_rotation": ["seo_page", "product", "seo_page", "site_improvement"],
+  "pages_built": [
+    {"file": "index.html", "purpose": "free rental ROI calculator, funnels to Gumroad product"}
+  ],
+  "products_built": [
+    {"name": "Rental Property Deal Analyzer Pro", "price": 24, "status": "live", "url": "https://apophatic.gumroad.com/l/rental-property-analyzer"}
+  ],
+  "product_roadmap": ["landlord income & expense tracker (tax-focused)", "BRRRR deal analyzer", "fix-and-flip budget calculator", "Airbnb/STR revenue analyzer", "deal comparison workbook"],
+  "notes": "Site launched 2026-07-31. Discover eligibility on Gumroad requires first sale + risk review."
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /ops/
+Sitemap: https://apophaticstudios.github.io/sitemap.xml
