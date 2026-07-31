@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Rental Property ROI Calculator — Cash Flow, Cap Rate & Cash-on-Cash</title>
+<meta name="description" content="Free rental property calculator. Instantly get monthly cash flow, cap rate, cash-on-cash return, DSCR and the 1% rule for any rental deal. No signup required.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How do I calculate cash flow on a rental property?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Monthly cash flow = effective rental income minus operating expenses (taxes, insurance, maintenance, management, vacancy reserve) minus the mortgage payment. Positive cash flow means the property pays you every month."}},
+    {"@type": "Question", "name": "What is a good cap rate for a rental property?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Cap rate = annual net operating income divided by purchase cost. Many residential investors look for 5-8% depending on the market; higher cap rates generally mean higher return and higher risk."}},
+    {"@type": "Question", "name": "What is the 1% rule in real estate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 1% rule is a quick screen: monthly rent should be at least 1% of the purchase price. A $200,000 property should rent for about $2,000/month to pass. It is a first-pass filter, not a final analysis."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  label:first-of-type { margin-top: 0; }
+  input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; }
+  section.seo p { color: var(--ink-2); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Rental Property ROI Calculator</h1>
+    <p class="sub">Enter a deal below and instantly see monthly cash flow, cap rate, cash-on-cash return, DSCR and the 1% rule. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Your deal</h2>
+      <label for="price">Purchase price ($)</label><input id="price" type="number" value="250000">
+      <label for="down">Down payment (%)</label><input id="down" type="number" value="20" step="0.5">
+      <label for="rate">Interest rate (% APR)</label><input id="rate" type="number" value="6.5" step="0.05">
+      <label for="term">Loan term (years)</label><input id="term" type="number" value="30">
+      <label for="rent">Monthly rent ($)</label><input id="rent" type="number" value="2200">
+      <label for="tax">Property tax ($/yr)</label><input id="tax" type="number" value="3200">
+      <label for="ins">Insurance ($/yr)</label><input id="ins" type="number" value="1400">
+      <label for="vac">Vacancy (%)</label><input id="vac" type="number" value="5" step="0.5">
+      <label for="opex">Maintenance + CapEx + management (% of rent)</label><input id="opex" type="number" value="18" step="0.5">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile"><div class="k">Monthly cash flow</div><div class="v" id="cf">–</div><div class="s">after all expenses &amp; mortgage</div></div>
+        <div class="tile"><div class="k">Cap rate</div><div class="v" id="cap">–</div><div class="s">NOI ÷ purchase price</div></div>
+        <div class="tile"><div class="k">Cash-on-cash</div><div class="v" id="coc">–</div><div class="s">annual cash flow ÷ cash invested</div></div>
+        <div class="tile"><div class="k">DSCR</div><div class="v" id="dscr">–</div><div class="s">lenders often want ≥ 1.20</div></div>
+        <div class="tile"><div class="k">1% rule</div><div class="v" id="one">–</div><div class="s">rent ÷ purchase price</div></div>
+        <div class="tile"><div class="k">Monthly P&amp;I</div><div class="v" id="pi">–</div><div class="s">principal &amp; interest payment</div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+
+      <div class="cta">
+        <p><strong>Want the full analysis?</strong> The Deal Analyzer Pro spreadsheet adds a 5-year projection, equity build-up, full amortization schedule, break-even occupancy, and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>How this calculator works</h2>
+    <p>The calculator estimates <strong>net operating income</strong> by taking your monthly rent, subtracting a vacancy allowance, then subtracting operating costs: property tax, insurance, and a combined percentage for maintenance, capital-expenditure reserves, and property management. Subtracting the mortgage payment (principal and interest) gives monthly cash flow.</p>
+    <h2>What the numbers mean</h2>
+    <p><strong>Cap rate</strong> is the property's unleveraged yield — annual NOI divided by price — useful for comparing deals regardless of financing. <strong>Cash-on-cash return</strong> measures the yield on the actual cash you put in (down payment and closing costs), which is what most buy-and-hold investors optimize. <strong>DSCR</strong> (debt service coverage ratio) is NOI divided by the mortgage payment; lenders on investment property commonly require 1.20 or better. The <strong>1% rule</strong> is a fast first-pass screen, not a verdict.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial or investment advice. Estimates exclude closing-cost financing, PMI, HOA and utilities; use the full spreadsheet for a complete model.</footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const fmtP = n => (n * 100).toFixed(2) + "%";
+  function calc() {
+    const price = +$("price").value || 0, downPct = (+$("down").value || 0) / 100;
+    const rate = (+$("rate").value || 0) / 100 / 12, nper = (+$("term").value || 0) * 12;
+    const rent = +$("rent").value || 0, tax = +$("tax").value || 0, ins = +$("ins").value || 0;
+    const vac = (+$("vac").value || 0) / 100, opexPct = (+$("opex").value || 0) / 100;
+    const loan = price * (1 - downPct);
+    const pi = nper === 0 ? 0 : (rate === 0 ? loan / nper : loan * rate / (1 - Math.pow(1 + rate, -nper)));
+    const effIncome = rent * (1 - vac);
+    const opex = tax / 12 + ins / 12 + rent * opexPct;
+    const noi = effIncome - opex;
+    const cf = noi - pi;
+    const cashInvested = price * downPct + price * 0.02; // ~2% closing estimate
+    $("cf").textContent = fmt$(cf);
+    $("cap").textContent = price ? fmtP(noi * 12 / price) : "–";
+    $("coc").textContent = cashInvested ? fmtP(cf * 12 / cashInvested) : "–";
+    $("dscr").textContent = pi ? (noi / pi).toFixed(2) : "–";
+    $("one").textContent = price ? fmtP(rent / price) : "–";
+    $("pi").textContent = fmt$(pi);
+    const v = $("verdict");
+    v.hidden = false;
+    if (cf >= 0) { v.className = "badge good"; v.textContent = "✓ Positive cash flow — deal pays you " + fmt$(cf) + "/month"; }
+    else { v.className = "badge bad"; v.textContent = "✗ Negative cash flow — deal costs you " + fmt$(-cf) + "/month"; }
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
