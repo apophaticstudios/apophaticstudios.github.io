@@ -1,14 +1,15 @@
 {
   "business": "rental-property investor tools",
-  "last_run_date": "2026-07-31",
-  "next_task": "seo_page",
+  "last_run_date": "2026-08-03",
+  "next_task": "product",
   "task_rotation": ["seo_page", "product", "seo_page", "site_improvement"],
   "pages_built": [
-    {"file": "index.html", "purpose": "free rental ROI calculator, funnels to Gumroad product"}
+    {"file": "index.html", "purpose": "free rental ROI calculator, funnels to Gumroad product"},
+    {"file": "cap-rate-calculator.html", "purpose": "cap rate calculator + how-to guide, targets 'how to calculate cap rate' / 'cap rate calculator'; interlinked with index, CTA to Gumroad"}
   ],
   "products_built": [
     {"name": "Rental Property Deal Analyzer Pro", "price": 24, "status": "live", "url": "https://apophatic.gumroad.com/l/rental-property-analyzer"}
   ],
   "product_roadmap": ["landlord income & expense tracker (tax-focused)", "BRRRR deal analyzer", "fix-and-flip budget calculator", "Airbnb/STR revenue analyzer", "deal comparison workbook"],
-  "notes": "Site launched 2026-07-31. Discover eligibility on Gumroad requires first sale + risk review."
+  "notes": "Site launched 2026-07-31. Discover eligibility on Gumroad requires first sale + risk review. Next run builds product #2: landlord income & expense tracker (tax-focused), delivered to Joshua with listing copy for manual Gumroad upload."
 }

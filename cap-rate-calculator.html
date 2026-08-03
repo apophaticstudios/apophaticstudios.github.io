@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap Rate Calculator — How to Calculate Cap Rate on a Rental Property</title>
+<meta name="description" content="Free cap rate calculator with the full formula explained. Enter rent, vacancy and operating expenses to get NOI and cap rate instantly, plus what price hits your target cap rate.">
+<link rel="canonical" href="https://apophaticstudios.github.io/cap-rate-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the cap rate formula?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Cap rate = annual net operating income (NOI) ÷ purchase price. NOI is your rental income after vacancy and operating expenses (taxes, insurance, maintenance, management) but before the mortgage payment. Multiply by 100 to express it as a percentage."}},
+    {"@type": "Question", "name": "What is a good cap rate for a rental property?",
+     "acceptedAnswer": {"@type": "Answer", "text": "There is no universal number — cap rates trade off return against risk and vary by market, property class and condition. Many buy-and-hold investors screen for roughly 5–8% on residential rentals; a lower cap rate usually reflects a safer, more expensive market, while a higher one signals more risk or more work."}},
+    {"@type": "Question", "name": "Does cap rate include the mortgage?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No. Cap rate deliberately excludes financing — it measures the property's unleveraged yield, so you can compare deals regardless of how each buyer would finance them. To measure the return on your actual cash invested with a mortgage in place, use cash-on-cash return instead."}},
+    {"@type": "Question", "name": "What is the difference between cap rate and cash-on-cash return?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Cap rate is NOI divided by price and ignores your loan. Cash-on-cash return is annual cash flow after the mortgage divided by the cash you invested (down payment and closing costs). Cap rate compares properties; cash-on-cash compares what your money earns."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  label:first-of-type { margin-top: 0; }
+  input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 520px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex td { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  table.ex td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a></nav>
+  <header>
+    <h1>Cap Rate Calculator</h1>
+    <p class="sub">Enter rent and operating expenses to get net operating income and cap rate instantly — plus the purchase price that would hit your target cap rate. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Property details</h2>
+      <label for="price">Purchase price ($)</label><input id="price" type="number" value="250000">
+      <label for="rent">Monthly rent ($)</label><input id="rent" type="number" value="2200">
+      <label for="vac">Vacancy (%)</label><input id="vac" type="number" value="5" step="0.5">
+      <label for="tax">Property tax ($/yr)</label><input id="tax" type="number" value="3200">
+      <label for="ins">Insurance ($/yr)</label><input id="ins" type="number" value="1400">
+      <label for="maint">Maintenance &amp; repairs ($/yr)</label><input id="maint" type="number" value="2400">
+      <label for="mgmt">Property management (% of rent)</label><input id="mgmt" type="number" value="8" step="0.5">
+      <label for="target">Your target cap rate (%)</label><input id="target" type="number" value="6" step="0.1">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile"><div class="k">Cap rate</div><div class="v" id="cap">–</div><div class="s">NOI ÷ purchase price</div></div>
+        <div class="tile"><div class="k">Annual NOI</div><div class="v" id="noi">–</div><div class="s">net operating income</div></div>
+        <div class="tile"><div class="k">Monthly NOI</div><div class="v" id="noim">–</div><div class="s">before any mortgage payment</div></div>
+        <div class="tile"><div class="k">Effective gross income</div><div class="v" id="egi">–</div><div class="s">rent after vacancy, per year</div></div>
+        <div class="tile"><div class="k">Operating expenses</div><div class="v" id="opex">–</div><div class="s">per year, excl. mortgage</div></div>
+        <div class="tile"><div class="k">Price at target cap</div><div class="v" id="tprice">–</div><div class="s">what to pay to hit <span id="tlabel">6.0%</span></div></div>
+      </div>
+
+      <div class="cta">
+        <p><strong>Cap rate is step one.</strong> The Deal Analyzer Pro spreadsheet adds cash flow after the mortgage, cash-on-cash return, a 5-year projection with equity build-up, full amortization, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>How to calculate cap rate</h2>
+    <p>The capitalization rate ("cap rate") measures a rental property's <strong>unleveraged annual yield</strong> — what the property earns relative to its price, ignoring any mortgage. The formula has two ingredients:</p>
+    <div class="formula">Cap rate = Net operating income ÷ Purchase price × 100</div>
+    <p><strong>Net operating income (NOI)</strong> is your annual rental income after a vacancy allowance and all operating expenses — property taxes, insurance, maintenance and repairs, property management, and any HOA or utilities you pay — but <strong>before</strong> the mortgage payment and before capital expenditures like a roof replacement. Because financing is excluded, two investors with completely different loans can use cap rate to compare the same property on equal terms.</p>
+
+    <h2>A worked example</h2>
+    <p>Take a $250,000 property renting for $2,200/month with 5% vacancy, $3,200/year in property taxes, $1,400 insurance, $2,400 maintenance, and 8% property management:</p>
+    <table class="ex">
+      <tr><td>Gross rent (12 × $2,200)</td><td>$26,400</td></tr>
+      <tr><td>Less vacancy (5%)</td><td>−$1,320</td></tr>
+      <tr><td>Effective gross income</td><td>$25,080</td></tr>
+      <tr><td>Less property tax</td><td>−$3,200</td></tr>
+      <tr><td>Less insurance</td><td>−$1,400</td></tr>
+      <tr><td>Less maintenance &amp; repairs</td><td>−$2,400</td></tr>
+      <tr><td>Less management (8% of gross rent)</td><td>−$2,112</td></tr>
+      <tr class="total"><td>Net operating income</td><td>$15,968</td></tr>
+    </table>
+    <p>Cap rate = $15,968 ÷ $250,000 = <strong>6.39%</strong>. That's the default scenario loaded in the calculator above — change any input and every figure updates.</p>
+
+    <h2>What is a good cap rate?</h2>
+    <p>There is no single "good" number, because cap rate prices risk. A pristine property in a strong, expensive market might trade at a 4–5% cap; a rougher property in a declining area might need 10%+ to attract buyers. Many residential buy-and-hold investors screen for roughly <strong>5–8%</strong>, then dig deeper. Treat an unusually high cap rate as a question — why is this property so cheap relative to its income? — rather than an automatic win. Local knowledge beats any rule of thumb: compare against recent sales of similar rentals in the same submarket.</p>
+
+    <h2>Cap rate vs. cash-on-cash return</h2>
+    <p>Cap rate ignores your loan; <strong>cash-on-cash return</strong> embraces it. Cash-on-cash divides your annual cash flow <em>after</em> the mortgage payment by the actual cash you invested (down payment plus closing costs), so it tells you what your money is earning once leverage is in play. A deal can have a modest cap rate and a strong cash-on-cash return with the right financing — or the reverse. Use cap rate to compare properties, cash-on-cash to compare uses of your capital, and <a href="/">our free ROI calculator</a> to see both side by side with DSCR and the 1% rule.</p>
+
+    <h2>Using cap rate to set your offer price</h2>
+    <p>The formula also runs backwards: <strong>Price = NOI ÷ target cap rate</strong>. If a property produces $15,968 of NOI and you require a 6% cap, the most you can pay is $15,968 ÷ 0.06 ≈ $266,000. The "price at target cap" tile above does this automatically — it's a fast way to turn a listing's numbers into a maximum offer.</p>
+
+    <h2>Limitations to keep in mind</h2>
+    <p>Cap rate is a snapshot, not a forecast. It says nothing about appreciation, rent growth, taxes on sale, or the capital expenditures an older property will demand. It's also only as honest as the expense numbers you feed it — listings often quote "pro forma" NOI with optimistic vacancy and skinny maintenance. Rebuild NOI from your own assumptions before trusting any advertised cap rate. For a full underwriting pass — financing, 5-year projections, equity build-up and deal comparison — that's what the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> is for.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial or investment advice. See also: <a href="/">Rental Property ROI Calculator</a>.</footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  function calc() {
+    const price = +$("price").value || 0, rent = +$("rent").value || 0;
+    const vac = (+$("vac").value || 0) / 100, tax = +$("tax").value || 0, ins = +$("ins").value || 0;
+    const maint = +$("maint").value || 0, mgmt = (+$("mgmt").value || 0) / 100;
+    const target = (+$("target").value || 0) / 100;
+    const gross = rent * 12;
+    const egi = gross * (1 - vac);
+    const opex = tax + ins + maint + gross * mgmt;
+    const noi = egi - opex;
+    $("egi").textContent = fmt$(egi);
+    $("opex").textContent = fmt$(opex);
+    $("noi").textContent = fmt$(noi);
+    $("noim").textContent = fmt$(noi / 12);
+    $("cap").textContent = price ? (noi / price * 100).toFixed(2) + "%" : "–";
+    $("tprice").textContent = target > 0 ? fmt$(noi / target) : "–";
+    $("tlabel").textContent = (target * 100).toFixed(1) + "%";
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
