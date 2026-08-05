@@ -1,15 +1,16 @@
 {
   "business": "rental-property investor tools",
-  "last_run_date": "2026-08-03",
-  "next_task": "product",
+  "last_run_date": "2026-08-05",
+  "next_task": "seo_page",
   "task_rotation": ["seo_page", "product", "seo_page", "site_improvement"],
   "pages_built": [
     {"file": "index.html", "purpose": "free rental ROI calculator, funnels to Gumroad product"},
     {"file": "cap-rate-calculator.html", "purpose": "cap rate calculator + how-to guide, targets 'how to calculate cap rate' / 'cap rate calculator'; interlinked with index, CTA to Gumroad"}
   ],
   "products_built": [
-    {"name": "Rental Property Deal Analyzer Pro", "price": 24, "status": "live", "url": "https://apophatic.gumroad.com/l/rental-property-analyzer"}
+    {"name": "Rental Property Deal Analyzer Pro", "price": 24, "status": "live", "url": "https://apophatic.gumroad.com/l/rental-property-analyzer"},
+    {"name": "Landlord Income & Expense Tracker", "price": 24, "status": "delivered to Joshua 2026-08-05, awaiting his Gumroad upload", "url": null}
   ],
-  "product_roadmap": ["landlord income & expense tracker (tax-focused)", "BRRRR deal analyzer", "fix-and-flip budget calculator", "Airbnb/STR revenue analyzer", "deal comparison workbook"],
-  "notes": "Site launched 2026-07-31. Discover eligibility on Gumroad requires first sale + risk review. Next run builds product #2: landlord income & expense tracker (tax-focused), delivered to Joshua with listing copy for manual Gumroad upload."
+  "product_roadmap": ["BRRRR deal analyzer", "fix-and-flip budget calculator", "Airbnb/STR revenue analyzer", "deal comparison workbook"],
+  "notes": "2026-08-05 run built product #2 (Landlord Income & Expense Tracker, Schedule E-focused, 630 formulas, recalc-verified) and delivered it with listing copy; Joshua must upload to Gumroad. Once live, add its URL here and cross-promote on site pages during next site_improvement run. Next run: seo_page — good candidates: rental property expense list / tax deduction checklist (would also funnel to new tracker), BRRRR calculator, 50% rule, DSCR calculator. Discover eligibility on Gumroad still requires first sale + risk review."
 }
