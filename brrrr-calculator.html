@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRRRR Calculator — Buy, Rehab, Rent, Refinance, Repeat (Free)</title>
+<meta name="description" content="Free BRRRR calculator. Enter purchase, rehab and ARV to see cash left in the deal, refinance proceeds, post-refi cash flow, DSCR and cash-on-cash return — plus the 70% rule max offer.">
+<link rel="canonical" href="https://apophaticstudios.github.io/brrrr-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the BRRRR method?",
+     "acceptedAnswer": {"@type": "Answer", "text": "BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. You buy a distressed property below market value, renovate it, place a tenant, then do a cash-out refinance based on the new appraised value (ARV) to recover most or all of your invested cash — which you then redeploy into the next deal."}},
+    {"@type": "Question", "name": "How much can I cash out when I refinance a BRRRR property?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The new loan is a percentage of the appraised value. Conventional (Fannie Mae) cash-out refinances on a 1-unit investment property are capped at 75% LTV (70% for 2–4 units). DSCR lenders typically offer 70–80% LTV depending on the program. Your cash back is the new loan minus any payoff of existing financing and refinance closing costs."}},
+    {"@type": "Question", "name": "How long do I have to wait to refinance a BRRRR deal (seasoning)?",
+     "acceptedAnswer": {"@type": "Answer", "text": "For a conventional cash-out refinance, Fannie Mae requires at least one borrower on title for 6 months, and any existing first mortgage being paid off must be at least 12 months old. If you bought with cash, the delayed-financing exception can let you recoup your documented investment sooner. DSCR lenders commonly require only 3–6 months of seasoning, and a few offer no-seasoning programs at lower LTVs."}},
+    {"@type": "Question", "name": "What is the 70% rule in BRRRR and flipping?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 70% rule says your maximum purchase price is 70% of the after-repair value minus the rehab budget. On a property with a $260,000 ARV needing $40,000 of work, that caps the offer at $142,000. It roughly ensures that a 70–75% LTV refinance or resale covers your total project cost."}},
+    {"@type": "Question", "name": "Can you really leave no money in a BRRRR deal?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes, when the refinance loan (a percentage of ARV) equals or exceeds your total project cost — purchase, rehab, closing and holding costs. That requires buying at a deep discount and controlling the rehab budget. When it happens, your cash-on-cash return is effectively infinite because you have no cash left invested. Most real deals leave some cash in; the goal is keeping that number small while the property still cash flows."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  .card h2 + label { margin-top: 0; }
+  .card h2.mid { margin-top: 22px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); text-decoration: none; }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 520px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex td { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  table.ex td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator</a></nav>
+  <header>
+    <h1>BRRRR Calculator</h1>
+    <p class="sub">Buy, Rehab, Rent, Refinance, Repeat. Enter your purchase, rehab and after-repair value to see how much cash the refinance returns, what stays stuck in the deal, and whether the property still cash flows afterward. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Buy &amp; rehab</h2>
+      <label for="price">Purchase price ($)</label><input id="price" type="number" value="135000">
+      <label for="rehab">Rehab budget ($)</label><input id="rehab" type="number" value="40000">
+      <label for="hold">Closing + holding costs ($)</label><input id="hold" type="number" value="8000">
+      <label for="arv">After-repair value — ARV ($)</label><input id="arv" type="number" value="260000">
+      <h2 class="mid">Refinance</h2>
+      <label for="ltv">Refinance LTV (% of ARV)</label><input id="ltv" type="number" value="70" step="1">
+      <label for="rate">Refi interest rate (% APR)</label><input id="rate" type="number" value="7.0" step="0.05">
+      <label for="term">Refi loan term (years)</label><input id="term" type="number" value="30">
+      <label for="rcc">Refi closing costs ($)</label><input id="rcc" type="number" value="4000">
+      <h2 class="mid">Rent &amp; operations</h2>
+      <label for="rent">Monthly rent after rehab ($)</label><input id="rent" type="number" value="2350">
+      <label for="vac">Vacancy (%)</label><input id="vac" type="number" value="5" step="0.5">
+      <label for="tax">Property tax ($/yr)</label><input id="tax" type="number" value="2600">
+      <label for="ins">Insurance ($/yr)</label><input id="ins" type="number" value="1400">
+      <label for="opex">Maintenance + CapEx + management (% of rent)</label><input id="opex" type="number" value="18" step="0.5">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile"><div class="k">Cash left in deal</div><div class="v" id="left">–</div><div class="s">after the refinance returns cash</div></div>
+        <div class="tile"><div class="k">Cash-on-cash</div><div class="v" id="coc">–</div><div class="s">annual cash flow ÷ cash left in</div></div>
+        <div class="tile"><div class="k">Monthly cash flow</div><div class="v" id="cf">–</div><div class="s">after expenses &amp; new mortgage</div></div>
+        <div class="tile"><div class="k">DSCR</div><div class="v" id="dscr">–</div><div class="s">refi lenders often want ≥ 1.20</div></div>
+        <div class="tile"><div class="k">New loan at refi</div><div class="v" id="loan">–</div><div class="s"><span id="ltvlabel">70%</span> of ARV</div></div>
+        <div class="tile"><div class="k">Equity after refi</div><div class="v" id="equity">–</div><div class="s">ARV − new loan</div></div>
+        <div class="tile"><div class="k">Total project cost</div><div class="v" id="allin">–</div><div class="s">purchase + rehab + costs</div></div>
+        <div class="tile"><div class="k">All-in ÷ ARV</div><div class="v" id="ratio">–</div><div class="s">under ~70–75% recycles your cash</div></div>
+        <div class="tile"><div class="k">70% rule max offer</div><div class="v" id="rule70">–</div><div class="s">70% × ARV − rehab</div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+
+      <div class="cta">
+        <p><strong>This is the back of the envelope.</strong> The Deal Analyzer Pro spreadsheet underwrites the full deal — 5-year projection, equity build-up, complete amortization schedule, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>What is the BRRRR method?</h2>
+    <p><strong>BRRRR</strong> stands for <strong>Buy, Rehab, Rent, Refinance, Repeat</strong>. You buy a distressed property well below market value, renovate it, place a tenant, then do a <strong>cash-out refinance</strong> against the new appraised value. Because the loan is sized on the after-repair value (ARV) rather than what you paid, a well-bought deal returns most — sometimes all — of your invested cash at the refinance, while you keep the property, the tenant and the equity. That recycled cash funds the next deal, which is what makes BRRRR a portfolio-building strategy rather than a single transaction.</p>
+
+    <h2>The number that matters: cash left in the deal</h2>
+    <div class="formula">Cash left in deal = Total project cost − (New loan − Refi closing costs)</div>
+    <p>Total project cost is everything the deal consumes: purchase price, rehab budget, purchase closing costs, and holding costs while the property is vacant during renovation (if you financed the purchase with a hard-money or private loan, include its points and interest in holding costs — the refinance pays off that loan, and this formula still gives your true cash position). The refinance returns <em>new loan minus closing costs</em>. Whatever remains stuck in the deal is the denominator of your cash-on-cash return — which is why a BRRRR that leaves $5,000 in can show a far higher return than a conventional purchase that leaves $50,000 in, even at identical rents.</p>
+
+    <h2>A worked example</h2>
+    <p>The calculator loads this scenario by default — a $260,000-ARV property bought at a deep discount:</p>
+    <table class="ex">
+      <tr><td>Purchase price</td><td>$135,000</td></tr>
+      <tr><td>Rehab budget</td><td>$40,000</td></tr>
+      <tr><td>Closing + holding costs</td><td>$8,000</td></tr>
+      <tr class="total"><td>Total project cost (all-in)</td><td>$183,000</td></tr>
+      <tr><td>New loan (70% × $260,000 ARV)</td><td>$182,000</td></tr>
+      <tr><td>Less refi closing costs</td><td>−$4,000</td></tr>
+      <tr class="total"><td>Cash returned at refinance</td><td>$178,000</td></tr>
+      <tr class="total"><td>Cash left in deal</td><td>$5,000</td></tr>
+    </table>
+    <p>All-in cost is 70.4% of ARV, so the 70%-of-value refinance hands back nearly everything. Renting at $2,350/month, the deal still cash flows after the new mortgage — change any input above and every figure updates instantly.</p>
+
+    <h2>The refinance is where BRRRR lives or dies</h2>
+    <p>Two lender constraints decide how much cash you actually get back:</p>
+    <p><strong>Loan-to-value caps.</strong> A conventional (Fannie Mae) cash-out refinance on a 1-unit investment property is limited to <strong>75% LTV</strong> (70% for 2–4 units). DSCR lenders — who qualify the loan on the property's rent rather than your personal income — typically offer <strong>70–80%</strong> depending on the program, with the more aggressive LTVs demanding stronger credit and coverage ratios.</p>
+    <p><strong>Seasoning.</strong> For a conventional cash-out refi, Fannie Mae requires at least one borrower to have been on title for <strong>6 months</strong>, and — since April 2023 — any existing first mortgage being paid off must be at least <strong>12 months old</strong>. That 12-month rule matters if you bought with a recorded hard-money first lien. Bought with cash? The <strong>delayed-financing exception</strong> can let you recover your documented investment without waiting. DSCR lenders are commonly more flexible: <strong>3–6 months</strong> of seasoning is typical, and a few programs offer no-seasoning cash-out at reduced LTVs — though within the first year many will cap the appraised value they'll lend against. Model your holding costs on the timeline your lender actually requires, not the timeline you hope for.</p>
+
+    <h2>The 70% rule: buying right is the whole game</h2>
+    <div class="formula">Max offer = 70% × ARV − Rehab budget</div>
+    <p>The classic flipper's screen works for BRRRR too, and for the same reason: if your all-in cost lands at or under roughly 70–75% of ARV, a refinance at that LTV returns your capital. On the example above, 70% × $260,000 − $40,000 = <strong>$142,000</strong> — the $135,000 purchase passes. Miss on the buy price and no amount of clever refinancing fixes it; the discount you capture at purchase is the cash you extract at refi.</p>
+
+    <h2>Watch the DSCR — the deal must survive the new mortgage</h2>
+    <p>Pulling maximum cash out means carrying maximum debt. Lenders check the <strong>debt service coverage ratio</strong> — net operating income divided by the mortgage payment — and DSCR programs commonly want <strong>1.20 or better</strong> (our <a href="/">free ROI calculator</a> shows DSCR for any rental). At today's interest rates, a max-LTV refinance can push an otherwise fine rental to break-even or negative cash flow: the calculator above shows both numbers so you can trade cash-out against cash flow honestly. Many experienced BRRRR investors deliberately refinance below the maximum LTV, leaving a little more equity in to keep the property solidly profitable.</p>
+
+    <h2>Other ways BRRRR deals go wrong</h2>
+    <p><strong>The appraisal comes in low.</strong> Your ARV estimate is a hypothesis; the appraiser's number sets the loan. Base ARV on genuinely comparable renovated sales, and know your numbers at an appraisal 5–10% under your estimate. <strong>The rehab runs over.</strong> Every extra dollar of renovation is a dollar that stays stuck in the deal — pad the budget and get real bids before closing. <strong>The timeline stretches.</strong> Holding costs accrue monthly while you renovate, lease and wait out seasoning; a 4-month plan that takes 9 months quietly eats the margin. Estimate expenses honestly — vacancy, maintenance, capital reserves and management (see the expense walk-through in our <a href="/cap-rate-calculator.html">cap rate guide</a>) — because the refinance lender will.</p>
+
+    <h2>Run the full numbers before you offer</h2>
+    <p>This page is a screen, not an underwrite. For the complete picture — month-by-month cash flow, a 5-year projection with rent growth, equity build-up on the new loan's full amortization schedule, break-even occupancy, and side-by-side comparison of a BRRRR against a turnkey alternative — the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> does it in Excel, yours to keep.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial, tax or investment advice. Lending guidelines (LTV caps, seasoning, DSCR minimums) vary by lender and change over time — confirm current terms with your lender before committing.<br>More free tools: <a href="/">Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator &amp; Guide</a></footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  function calc() {
+    const price = +$("price").value || 0, rehab = +$("rehab").value || 0, hold = +$("hold").value || 0;
+    const arv = +$("arv").value || 0, ltv = (+$("ltv").value || 0) / 100;
+    const rate = (+$("rate").value || 0) / 100 / 12, nper = (+$("term").value || 0) * 12;
+    const rcc = +$("rcc").value || 0;
+    const rent = +$("rent").value || 0, vac = (+$("vac").value || 0) / 100;
+    const tax = +$("tax").value || 0, ins = +$("ins").value || 0, opexPct = (+$("opex").value || 0) / 100;
+
+    const allin = price + rehab + hold;
+    const loan = arv * ltv;
+    const returned = loan - rcc;
+    const left = allin - returned;
+    const equity = arv - loan;
+    const pi = nper === 0 ? 0 : (rate === 0 ? loan / nper : loan * rate / (1 - Math.pow(1 + rate, -nper)));
+    const noi = rent * (1 - vac) - (tax / 12 + ins / 12 + rent * opexPct);
+    const cf = noi - pi;
+
+    $("allin").textContent = fmt$(allin);
+    $("loan").textContent = fmt$(loan);
+    $("ltvlabel").textContent = ((+$("ltv").value || 0)).toFixed(0) + "%";
+    $("left").textContent = fmt$(left);
+    $("equity").textContent = fmt$(equity);
+    $("cf").textContent = fmt$(cf);
+    $("dscr").textContent = pi ? (noi / pi).toFixed(2) : "–";
+    $("ratio").textContent = arv ? (allin / arv * 100).toFixed(1) + "%" : "–";
+    $("rule70").textContent = fmt$(arv * 0.7 - rehab);
+    $("coc").textContent = left > 0 ? (cf * 12 / left * 100).toFixed(1) + "%" : (cf > 0 ? "∞" : "–");
+
+    const v = $("verdict");
+    v.hidden = false;
+    if (left <= 0 && cf >= 0) { v.className = "badge good"; v.textContent = "✓ All cash out — nothing left in the deal, and it still cash flows " + fmt$(cf) + "/month"; }
+    else if (cf >= 0) { v.className = "badge good"; v.textContent = "✓ " + fmt$(left) + " stays in the deal; cash flows " + fmt$(cf) + "/month after the refi"; }
+    else { v.className = "badge bad"; v.textContent = "✗ Negative cash flow after the refi (" + fmt$(cf) + "/month) — consider a lower LTV or a better buy price"; }
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
