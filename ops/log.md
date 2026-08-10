@@ -21,3 +21,9 @@
 - Interlinked: index.html (body + footer) and cap-rate-calculator.html (footer) now link to the new page; new page crumbs/footer/body link back to both and CTA to Gumroad product. Added to sitemap.xml.
 - Rationale: page pre-builds SEO for roadmap product #3 (BRRRR deal analyzer), which the next run (product) will build — then cross-promote it on this page.
 - Next task: product (BRRRR deal analyzer workbook).
+
+## 2026-08-10 (scheduled run: product)
+- Built product #3: BRRRR Deal Analyzer Pro (.xlsx, 8 tabs: Start Here, Deal Inputs, Deal Summary, Project Cash, 5-Year Projection, Amortization, Sensitivity, hidden Lists). Models the full cycle incl. a hard-money financing module (% purchase/rehab financed, points, interest-only carry, payoff at refi) with a Cash/Hard-money dropdown; phase-by-phase cash statement; 360-month amortization feeding the projection; 3 sensitivity grids (cash-left vs ARV×LTV, cash flow & DSCR vs rate×LTV) with conditional formatting; lender facts (Fannie LTV caps + seasoning, DSCR norms) on Start Here.
+- Verification: 2,101 formulas, LibreOffice recalc 0 errors. 68 independent Python recomputation checks passed (summary, project-cash ties, amortization, all 5 projection years, sensitivity spot cells). 20 scenario checks passed: Cash mode with page-equivalent inputs reproduces brrrr-calculator.html's published example exactly ($183k all-in, $182k loan, $5k left, $265/mo CF, DSCR 1.22, CoC 63.7%); all-cash-out case shows negative left-in + "infinite" CoC text; term=0 and 15-yr-term edges behave correctly.
+- Delivered workbook + ready-to-paste Gumroad listing copy ($24 suggested, tags incl. brrrr/dscr/hard money) to Joshua. AWAITING JOSHUA: upload/publish on Gumroad (tracker from 08-05 also still pending), then record URLs in state.json.
+- Next task: seo_page (candidates: expense/tax-deduction checklist → tracker funnel; DSCR loan calculator → BRRRR product funnel; 50% rule).

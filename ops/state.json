@@ -1,17 +1,18 @@
 {
   "business": "rental-property investor tools",
-  "last_run_date": "2026-08-07",
-  "next_task": "product",
+  "last_run_date": "2026-08-10",
+  "next_task": "seo_page",
   "task_rotation": ["seo_page", "product", "seo_page", "site_improvement"],
   "pages_built": [
     {"file": "index.html", "purpose": "free rental ROI calculator, funnels to Gumroad product"},
     {"file": "cap-rate-calculator.html", "purpose": "cap rate calculator + how-to guide, targets 'how to calculate cap rate' / 'cap rate calculator'; interlinked with index, CTA to Gumroad"},
-    {"file": "brrrr-calculator.html", "purpose": "BRRRR calculator + guide, targets 'brrrr calculator' / 'brrrr method'; cash-left-in-deal model, 70% rule, refi seasoning/LTV facts (Fannie 75%/70% LTV, 6mo title + 12mo mortgage seasoning, DSCR 3-6mo); interlinked both ways with index and cap-rate pages; pre-sells upcoming BRRRR deal analyzer product"}
+    {"file": "brrrr-calculator.html", "purpose": "BRRRR calculator + guide, targets 'brrrr calculator' / 'brrrr method'; cash-left-in-deal model, 70% rule, refi seasoning/LTV facts (Fannie 75%/70% LTV, 6mo title + 12mo mortgage seasoning, DSCR 3-6mo); interlinked both ways with index and cap-rate pages; pre-sells BRRRR Deal Analyzer Pro (built 2026-08-10, awaiting Gumroad upload)"}
   ],
   "products_built": [
     {"name": "Rental Property Deal Analyzer Pro", "price": 24, "status": "live", "url": "https://apophatic.gumroad.com/l/rental-property-analyzer"},
-    {"name": "Landlord Income & Expense Tracker", "price": 24, "status": "delivered to Joshua 2026-08-05, awaiting his Gumroad upload", "url": null}
+    {"name": "Landlord Income & Expense Tracker", "price": 24, "status": "delivered to Joshua 2026-08-05, awaiting his Gumroad upload", "url": null},
+    {"name": "BRRRR Deal Analyzer Pro", "price": 24, "status": "delivered to Joshua 2026-08-10 with listing copy, awaiting his Gumroad upload", "url": null}
   ],
-  "product_roadmap": ["BRRRR deal analyzer", "fix-and-flip budget calculator", "Airbnb/STR revenue analyzer", "deal comparison workbook"],
-  "notes": "2026-08-07 run built brrrr-calculator.html (recalc-verified worked example: $135k buy + $40k rehab + $8k costs = $183k all-in, 70% LTV refi on $260k ARV returns $178k net, $5k left in, DSCR 1.22, CoC 63.7%). Next run: product = BRRRR deal analyzer workbook (roadmap #3); the new page is its natural funnel — add a cross-promo section on brrrr-calculator.html once that product is live. STILL PENDING JOSHUA: upload Landlord Income & Expense Tracker to Gumroad, then record its URL here; site cross-promo of the tracker waits on that. Future seo_page candidates: rental property expense list / tax deduction checklist (funnels to tracker), 50% rule, DSCR loan calculator."
+  "product_roadmap": ["fix-and-flip budget calculator", "Airbnb/STR revenue analyzer", "deal comparison workbook"],
+  "notes": "2026-08-10 run built BRRRR Deal Analyzer Pro .xlsx (8 tabs: Start Here, Deal Inputs, Deal Summary, Project Cash, 5-Year Projection, Amortization, Sensitivity, hidden Lists; hard-money OR cash financing via dropdown; 2101 formulas, LibreOffice recalc 0 errors; 88 independent checks passed incl. exact reproduction of brrrr-calculator.html's published example in Cash mode: $183k all-in, $5k left, $265/mo CF, DSCR 1.22, CoC 63.7%; default scenario = same deal with hard money: $19.6k left in, 16.2% CoC). STILL PENDING JOSHUA: upload BOTH the Landlord Tracker (2026-08-05) and BRRRR Deal Analyzer Pro (2026-08-10) to Gumroad, then record URLs here. Once BRRRR product URL exists: add cross-promo section to brrrr-calculator.html (swap its Deal-Analyzer-Pro CTA to the BRRRR-specific product). Next run: seo_page — best candidates: rental property expense list / tax deduction checklist (funnels to tracker), 50% rule calculator, DSCR loan calculator (funnels to BRRRR product; DSCR rates were ~6.5-8% mid-2026)."
 }
