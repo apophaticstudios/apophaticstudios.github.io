@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSCR Loan Calculator — Debt Service Coverage Ratio for Rental Property (Free)</title>
+<meta name="description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way DSCR lenders do (rent ÷ PITIA), the maximum loan the rent supports at a target DSCR, the rent you need to qualify, and 2026 DSCR loan requirements.">
+<link rel="canonical" href="https://apophaticstudios.github.io/dscr-loan-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How is DSCR calculated for a DSCR loan?",
+     "acceptedAnswer": {"@type": "Answer", "text": "DSCR lenders divide the property's gross monthly rent by the full monthly housing payment — principal, interest, property taxes, insurance and any HOA dues (PITIA). A property renting for $2,500 with a $1,922 PITIA has a DSCR of 1.30. Lenders use the lower of the actual lease rent and the appraiser's market-rent estimate (Form 1007)."}},
+    {"@type": "Question", "name": "What DSCR do you need to qualify for a DSCR loan?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Most DSCR lenders require a ratio of at least 1.0, meaning rent fully covers the payment. The best pricing and highest loan-to-value typically start at 1.25 or higher. Some programs lend at ratios between 0.75 and 1.0 — or with no ratio requirement at all — but at lower LTVs and higher rates."}},
+    {"@type": "Question", "name": "What is the difference between a lender's DSCR and an investor's DSCR?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Investors usually compute DSCR as net operating income divided by principal and interest, which deducts vacancy, maintenance and management but ignores taxes and insurance in the denominator. DSCR lenders compute gross rent divided by PITIA — no operating-expense haircut, but taxes, insurance and HOA are added to the payment. The two numbers can differ noticeably for the same property, so use the lender version when qualifying."}},
+    {"@type": "Question", "name": "What are typical DSCR loan requirements in 2026?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Typical published guidelines: minimum DSCR around 1.0 (1.25+ for the best tier), loan-to-value up to 75–80% on purchases and 70–75% on cash-out refinances, minimum credit scores in the 620–680 range with 720+ for best pricing, 3–6 months of PITIA in reserves, loan amounts from roughly $100,000 up to several million, and prepayment penalties that step down over 1–5 years. Loans can usually close in an LLC and require no personal income or tax-return documentation."}},
+    {"@type": "Question", "name": "How can I raise my DSCR to qualify?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Four levers: put more money down (a smaller loan lowers the payment), buy down the interest rate or choose an interest-only option, reduce the non-P&I costs by shopping insurance or appealing taxes, or increase documented rent with a market-rate lease. Even a 5% larger down payment can move a marginal deal across the 1.0 or 1.25 line."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+    --warn-bg: #fff4e0; --warn-ink: #8a5a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+      --warn-bg: #3a2d12; --warn-ink: #f0c674;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  .card h2 + label { margin-top: 0; }
+  .card h2.mid { margin-top: 22px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  input, select { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .note { margin-top: 12px; font-size: 0.85rem; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .note strong { color: var(--ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); text-decoration: none; }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 560px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex th { text-align: left; padding: 6px 10px; border-bottom: 2px solid var(--line); color: var(--ink-3); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.ex td { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  table.ex td:last-child, table.ex th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  table.ex td:last-child { color: var(--ink); }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a></nav>
+  <header>
+    <h1>DSCR Loan Calculator</h1>
+    <p class="sub">Compute your debt service coverage ratio the way a DSCR lender does — gross rent divided by the full PITIA payment — and see the biggest loan the rent will support, the rent you'd need to hit a target ratio, and where your deal lands against 2026 lender tiers. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Property &amp; loan</h2>
+      <label for="price">Purchase price or appraised value ($)</label><input id="price" type="number" value="300000">
+      <label for="ltv">Loan-to-value — LTV (%)</label><input id="ltv" type="number" value="75" step="1">
+      <label for="rate">Interest rate (% APR)</label><input id="rate" type="number" value="7.0" step="0.05">
+      <label for="term">Amortization term (years)</label><input id="term" type="number" value="30">
+      <label for="io">Payment type</label>
+      <select id="io"><option value="amort">Fully amortizing (P&amp;I)</option><option value="io">Interest-only</option></select>
+      <label for="cc">Closing costs ($)</label><input id="cc" type="number" value="7500">
+      <h2 class="mid">Rent &amp; carrying costs</h2>
+      <label for="rent">Gross monthly rent ($)</label><input id="rent" type="number" value="2500">
+      <label for="tax">Property tax ($/yr)</label><input id="tax" type="number" value="3600">
+      <label for="ins">Insurance ($/yr)</label><input id="ins" type="number" value="1500">
+      <label for="hoa">HOA dues ($/mo)</label><input id="hoa" type="number" value="0">
+      <h2 class="mid">Lender targets</h2>
+      <label for="target">Target DSCR</label><input id="target" type="number" value="1.25" step="0.05">
+      <label for="res">Reserves required (months of PITIA)</label><input id="res" type="number" value="6" step="1">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile"><div class="k">DSCR</div><div class="v" id="dscr">–</div><div class="s">gross rent ÷ PITIA</div></div>
+        <div class="tile"><div class="k">Monthly PITIA</div><div class="v" id="pitia">–</div><div class="s">P&amp;I + tax + insurance + HOA</div></div>
+        <div class="tile"><div class="k">Loan amount</div><div class="v" id="loan">–</div><div class="s"><span id="ltvlabel">75%</span> of value</div></div>
+        <div class="tile"><div class="k">Max loan at <span id="tlabel">1.25</span>×</div><div class="v" id="maxloan">–</div><div class="s">the most the rent supports</div></div>
+        <div class="tile"><div class="k">Rent needed at <span id="tlabel2">1.25</span>×</div><div class="v" id="rentneed">–</div><div class="s">to hit your target on this loan</div></div>
+        <div class="tile"><div class="k">Rent − PITIA</div><div class="v" id="spread">–</div><div class="s">monthly cushion before opex</div></div>
+        <div class="tile"><div class="k">Monthly P&amp;I</div><div class="v" id="pi">–</div><div class="s" id="pisub">principal &amp; interest</div></div>
+        <div class="tile"><div class="k">Cash to close</div><div class="v" id="ctc">–</div><div class="s">down payment + closing costs</div></div>
+        <div class="tile"><div class="k">Reserves</div><div class="v" id="resv">–</div><div class="s"><span id="reslabel">6</span> months of PITIA</div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+      <div class="note" id="binding"></div>
+
+      <div class="cta">
+        <p><strong>Qualifying is step one — profit is step two.</strong> The Deal Analyzer Pro spreadsheet underwrites the whole deal: true NOI after vacancy and reserves, 5-year projection, full amortization schedule, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>What is a DSCR loan?</h2>
+    <p>A <strong>DSCR loan</strong> is an investment-property mortgage that qualifies you on the property's rent instead of your personal income. No tax returns, W-2s or debt-to-income calculation — the lender asks one question: does the rent cover the mortgage payment? The answer is the <strong>debt service coverage ratio</strong>. Because the underwriting is property-based, DSCR loans are the workhorse financing for self-employed investors, people with many financed properties, and anyone whose tax returns understate their real cash flow. They usually close in an LLC, come as 30-year fixed, ARM or interest-only products, and price somewhat above conventional investment loans in exchange for the flexibility.</p>
+
+    <h2>How lenders calculate DSCR</h2>
+    <div class="formula">DSCR = Gross monthly rent ÷ Monthly PITIA</div>
+    <p><strong>PITIA</strong> is the full housing payment: <strong>P</strong>rincipal, <strong>I</strong>nterest, property <strong>T</strong>axes, <strong>I</strong>nsurance and any HOA <strong>A</strong>ssociation dues. For rent, lenders take the <strong>lower</strong> of the signed lease and the appraiser's market-rent estimate (the Fannie Mae Form 1007 rent schedule); a vacant property is underwritten on the 1007 alone. A ratio of 1.0 means rent exactly covers the payment; 1.25 means rent is 25% above it.</p>
+
+    <h2>Lender DSCR vs. investor DSCR — they are not the same number</h2>
+    <p>Investors (and our <a href="/">free ROI calculator</a>) typically compute DSCR as <strong>net operating income ÷ annual debt service</strong>: rent less vacancy, maintenance, reserves and management, divided by principal and interest only. DSCR lenders instead use <strong>gross rent ÷ PITIA</strong> — no operating-expense haircut, but taxes, insurance and HOA move into the denominator. On a property with low taxes the lender's number comes out higher; on a high-tax, high-HOA property it can come out lower. Both are useful: the investor version tells you whether you will actually make money, the lender version tells you whether you will get the loan. This page computes the lender version; run the same deal through the ROI calculator for the investor view.</p>
+
+    <h2>A worked example</h2>
+    <p>The calculator loads this scenario by default — a $300,000 rental financed at 75% LTV:</p>
+    <table class="ex">
+      <tr><td>Loan amount (75% × $300,000)</td><td>$225,000</td></tr>
+      <tr><td>Principal &amp; interest (7.0%, 30-yr fixed)</td><td>$1,496.93</td></tr>
+      <tr><td>Property tax ($3,600 ÷ 12)</td><td>$300.00</td></tr>
+      <tr><td>Insurance ($1,500 ÷ 12)</td><td>$125.00</td></tr>
+      <tr><td>HOA</td><td>$0.00</td></tr>
+      <tr class="total"><td>Monthly PITIA</td><td>$1,921.93</td></tr>
+      <tr><td>Gross monthly rent</td><td>$2,500.00</td></tr>
+      <tr class="total"><td>DSCR = $2,500 ÷ $1,921.93</td><td>1.30</td></tr>
+    </table>
+    <p>At 1.30 the deal clears the 1.25 top tier with room to spare. Working backward, the rent could support a payment of $2,500 ÷ 1.25 = $2,000, which after taxes and insurance leaves $1,575 for principal and interest — enough to amortize a loan of about <strong>$236,700</strong>. That is more than the 75%-LTV loan of $225,000, so <strong>LTV, not DSCR, is the binding constraint</strong> here. Push the rate to 8% and P&amp;I rises to $1,650.97, PITIA to $2,075.97 and the DSCR slips to <strong>1.20</strong> — still above 1.0 but out of the best pricing tier. That sensitivity to rate is why DSCR borrowers often buy points or take an interest-only option on marginal deals.</p>
+
+    <h2>DSCR loan requirements in 2026</h2>
+    <p>Programs differ, but published lender guidelines as of August 2026 cluster around the following. Treat them as the shape of the market, not a promise from any one lender.</p>
+    <table class="ex">
+      <tr><th>Requirement</th><th>Typical range</th></tr>
+      <tr><td>Minimum DSCR</td><td>1.0 floor; 1.25+ best tier</td></tr>
+      <tr><td>Sub-1.0 / no-ratio programs</td><td>Available at lower LTV, higher rate</td></tr>
+      <tr><td>Max LTV — purchase or rate/term refi</td><td>75–80%</td></tr>
+      <tr><td>Max LTV — cash-out refi</td><td>70–75%</td></tr>
+      <tr><td>Minimum credit score</td><td>620–680; 720+ for best pricing</td></tr>
+      <tr><td>Reserves</td><td>3–6 months of PITIA</td></tr>
+      <tr><td>Loan amount</td><td>~$100,000 up to several million</td></tr>
+      <tr><td>Prepayment penalty</td><td>1–5 years, step-down (e.g. 5-4-3-2-1)</td></tr>
+      <tr><td>Vesting</td><td>Individual or LLC</td></tr>
+      <tr><td>Income documentation</td><td>None — lease and/or 1007 only</td></tr>
+    </table>
+    <p><strong>How the ratio moves your rate.</strong> Lenders price in tiers. One representative rate sheet adds roughly 0.1% for ratios between 1.25 and 1.5, 0.3% for 1.0–1.25 and about 0.6% for 0.8–1.0 relative to the best tier, with 1.5+ getting the base price. Credit score and LTV add their own adjustments, so a 1.30 DSCR at 720 credit and 75% LTV will not price like a 1.30 DSCR at 660 and 80%.</p>
+    <p><strong>Where rates sit.</strong> In August 2026, advertised 30-year fixed DSCR rates started around 6.1–6.4% for the strongest files, with most investors landing somewhere between roughly 6.5% and 8% once DSCR, credit and LTV adjustments apply. Rates move daily; enter the quote you actually receive.</p>
+    <p><strong>Prepayment penalties deserve attention.</strong> Unlike conventional loans, most DSCR products carry a penalty for paying off early — commonly a step-down over 3 or 5 years, with shorter or no-penalty options costing a higher rate. If you plan to sell or refinance within that window (for example after a BRRRR rehab), the penalty is a real cost; model it.</p>
+
+    <h2>Four ways to raise your DSCR</h2>
+    <p><strong>1. Put more down.</strong> A smaller loan is a smaller payment. Dropping from 80% to 75% LTV on the example above trims P&amp;I by about $100 a month — often the difference between 1.2 and 1.25. <strong>2. Lower the rate or go interest-only.</strong> Buying points or electing an interest-only period (use the payment-type switch above) cuts the payment and lifts the ratio; just remember IO builds no equity and resets higher when amortization begins. <strong>3. Shrink the non-P&amp;I costs.</strong> Shop the insurance, check whether the tax assessment can be appealed, and avoid HOA-heavy properties when the ratio is tight — every $50 of monthly carrying cost removed moves the DSCR on a $2,500 rent by roughly 0.03–0.04. <strong>4. Document more rent.</strong> A signed market-rate lease, a rent increase at renewal, or furnishing for a higher-rent segment all lift the numerator — but the lender will still cap you at the appraiser's market-rent figure, so the 1007 is the ceiling.</p>
+
+    <h2>DSCR loans and the BRRRR strategy</h2>
+    <p>DSCR lenders are the most common exit financing for <a href="/brrrr-calculator.html">BRRRR deals</a> because they typically require only 3–6 months of seasoning before a cash-out refinance (versus the 6- and 12-month rules on conventional cash-out) and they underwrite on the new rent, not your personal income. The catch is that the cash-out loan is capped by <em>both</em> the LTV limit (commonly 70–75% of the new appraisal) <em>and</em> the DSCR — whichever produces the smaller loan wins. The "Max loan" tile above shows which constraint binds, so you can see before you buy whether the refinance will actually return your capital. Estimating the after-repair value and rent? Start with the <a href="/cap-rate-calculator.html">cap rate guide</a> for an expense walk-through and the BRRRR calculator for the cash-left-in-deal math.</p>
+
+    <h2>Qualifying is not the same as profiting</h2>
+    <p>A 1.25 DSCR tells the lender the rent covers the mortgage with a 25% margin. It says nothing about vacancy, turnover, the roof, the water heater or the property manager — real operating costs that typically consume 35–50% of gross rent over time. A deal can sail through DSCR underwriting and still lose money. Before you commit, underwrite it properly: the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> models true NOI, a 5-year projection with rent and expense growth, the complete amortization schedule, break-even occupancy and side-by-side deal comparison — in Excel, yours to keep.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial, tax or lending advice. DSCR program terms (minimum ratios, LTV caps, credit and reserve requirements, rates and prepayment penalties) vary by lender and change frequently — confirm current terms with your lender before committing.<br>More free tools: <a href="/">Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator &amp; Guide</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a></footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = (n, d = 0) => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {minimumFractionDigits: d, maximumFractionDigits: d});
+  const pct = n => (n * 100).toFixed(1) + "%";
+  // Payment per $1 of loan
+  function payFactor(rate, nper, io) {
+    if (io) return rate;                         // interest-only: monthly interest on balance
+    if (nper === 0) return 0;
+    return rate === 0 ? 1 / nper : rate / (1 - Math.pow(1 + rate, -nper));
+  }
+  function calc() {
+    const price = +$("price").value || 0, ltv = (+$("ltv").value || 0) / 100;
+    const rate = (+$("rate").value || 0) / 100 / 12, nper = (+$("term").value || 0) * 12;
+    const io = $("io").value === "io";
+    const cc = +$("cc").value || 0;
+    const rent = +$("rent").value || 0, tax = +$("tax").value || 0, ins = +$("ins").value || 0, hoa = +$("hoa").value || 0;
+    const target = +$("target").value || 0, resMonths = +$("res").value || 0;
+
+    const loan = price * ltv;
+    const pf = payFactor(rate, nper, io);
+    const pi = loan * pf;
+    const tia = tax / 12 + ins / 12 + hoa;
+    const pitia = pi + tia;
+    const dscr = pitia > 0 ? rent / pitia : null;
+    const maxPitia = target > 0 ? rent / target : 0;
+    const maxPi = Math.max(0, maxPitia - tia);
+    const maxLoan = pf > 0 ? maxPi / pf : null;      // null = unbounded (no payment per $)
+    const rentNeed = target * pitia;
+    const spread = rent - pitia;
+    const ctc = price - loan + cc;
+    const resv = pitia * resMonths;
+
+    $("ltvlabel").textContent = (ltv * 100).toFixed(0) + "%";
+    $("tlabel").textContent = target.toFixed(2);
+    $("tlabel2").textContent = target.toFixed(2);
+    $("reslabel").textContent = resMonths.toFixed(0);
+    $("dscr").textContent = dscr === null ? "–" : dscr.toFixed(2);
+    $("pitia").textContent = fmt$(pitia);
+    $("loan").textContent = fmt$(loan);
+    $("maxloan").textContent = maxLoan === null ? "–" : fmt$(maxLoan);
+    $("rentneed").textContent = fmt$(rentNeed);
+    $("spread").textContent = fmt$(spread);
+    $("pi").textContent = fmt$(pi);
+    $("pisub").textContent = io ? "interest-only payment" : "principal & interest";
+    $("ctc").textContent = fmt$(ctc);
+    $("resv").textContent = fmt$(resv);
+
+    const v = $("verdict");
+    v.hidden = false;
+    if (dscr === null) { v.className = "badge warn"; v.textContent = "Enter a loan, rate and carrying costs to compute DSCR"; }
+    else if (dscr >= 1.25 && dscr >= target) { v.className = "badge good"; v.textContent = "✓ DSCR " + dscr.toFixed(2) + " — top tier (≥ 1.25): best pricing and max LTV at most lenders"; }
+    else if (dscr >= target && dscr >= 1.0) { v.className = "badge good"; v.textContent = "✓ DSCR " + dscr.toFixed(2) + " meets your " + target.toFixed(2) + " target and clears the 1.0 floor"; }
+    else if (dscr >= 1.0) { v.className = "badge warn"; v.textContent = "△ DSCR " + dscr.toFixed(2) + " clears the 1.0 floor but misses your " + target.toFixed(2) + " target — expect a rate add-on or lower LTV"; }
+    else { v.className = "badge bad"; v.textContent = "✗ DSCR " + dscr.toFixed(2) + " is below 1.0 — rent does not cover PITIA; only sub-1.0 / no-ratio programs at reduced LTV"; }
+
+    const b = $("binding");
+    if (maxLoan === null || price <= 0) { b.textContent = ""; b.style.display = "none"; }
+    else {
+      b.style.display = "block";
+      const impliedLtv = maxLoan / price;
+      if (maxLoan >= loan) {
+        b.innerHTML = "<strong>LTV is the binding constraint.</strong> At " + target.toFixed(2) + "× the rent supports up to " + fmt$(maxLoan) + " (implied LTV " + pct(impliedLtv) + "), more than the " + pct(ltv) + "-LTV loan of " + fmt$(loan) + ". The lender's LTV cap, not the rent, limits this loan.";
+      } else {
+        b.innerHTML = "<strong>DSCR is the binding constraint.</strong> At " + target.toFixed(2) + "× the rent supports only " + fmt$(maxLoan) + " (implied LTV " + pct(impliedLtv) + ") — " + fmt$(loan - maxLoan) + " less than the " + pct(ltv) + "-LTV loan. Bring more cash, lower the rate, cut carrying costs, or document rent of at least " + fmt$(rentNeed) + ".";
+      }
+    }
+  }
+  document.querySelectorAll("input, select").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
