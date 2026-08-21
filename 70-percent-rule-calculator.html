@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>70% Rule Calculator — Max Offer & Fix-and-Flip Profit (Free)</title>
+<meta name="description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), then check the full flip: net profit after financing, holding and selling costs, ROI, and break-even resale price.">
+<link rel="canonical" href="https://apophaticstudios.github.io/70-percent-rule-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the 70% rule in real estate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 70% rule says a house flipper should pay no more than 70% of a property's after-repair value (ARV) minus the cost of repairs. On a house worth $300,000 after renovation that needs $50,000 of work, the maximum offer is 70% × $300,000 − $50,000 = $160,000. The 30% discount is what pays for selling costs, financing, holding costs and your profit."}},
+    {"@type": "Question", "name": "How do you calculate maximum allowable offer (MAO)?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Maximum allowable offer = (ARV × rule percentage) − estimated repair costs. Most investors use 70% as the rule percentage, then adjust it for their market: closer to 65% in slow or low-priced markets, and 75% or higher in competitive, high-priced markets where discounts are harder to find."}},
+    {"@type": "Question", "name": "Is the 70% rule still realistic in 2026?",
+     "acceptedAnswer": {"@type": "Answer", "text": "As a first-pass screen, yes — but treat the percentage as a dial, not a law. In competitive or high-priced metros many flippers underwrite at 75–85% because true 70% deals rarely trade, while in slow or low-priced markets 65% leaves needed margin. ATTOM's Q1 2026 flipping report shows typical gross margins of about 25% of the purchase price, which is consistent with buying meaningfully below after-repair value."}},
+    {"@type": "Question", "name": "What does ARV mean in real estate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "ARV stands for after-repair value: what the property should sell for once the planned renovation is complete. Investors estimate it from recent sales of comparable, already-renovated homes nearby — similar size, age, bed/bath count and condition. ARV drives everything in a flip: the maximum offer, the loan size (hard-money lenders cap loans at roughly 70–75% of ARV), and the resale assumption your profit depends on."}},
+    {"@type": "Question", "name": "How much profit does the average house flip make?",
+     "acceptedAnswer": {"@type": "Answer", "text": "In ATTOM's Q1 2026 U.S. Home Flipping Report, the typical flip resold for a gross profit of about $66,000 — a 25.4% gross return on the purchase price — and took 165 days. Importantly, that gross figure is simply resale price minus purchase price: it does not subtract renovation, financing, holding or selling costs, so typical net profit is considerably lower."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+    --warn-bg: #fdf3e3; --warn-ink: #8a5a13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+      --warn-bg: #3a2d13; --warn-ink: #e8c477;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  .card h2 + label { margin-top: 0; }
+  .card h2.mid { margin-top: 22px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .tile.hero { border-color: var(--accent); }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); text-decoration: none; }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 520px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex td { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  table.ex td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a></nav>
+  <header>
+    <h1>70% Rule Calculator</h1>
+    <p class="sub">Get your maximum allowable offer (MAO) from the ARV and rehab budget — then go past the rule of thumb and check the whole flip: net profit after financing, holding and selling costs, cash needed, ROI and break-even resale price. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>The property</h2>
+      <label for="arv">After-repair value — ARV ($)</label><input id="arv" type="number" value="300000">
+      <label for="rehab">Rehab / repair budget ($)</label><input id="rehab" type="number" value="50000">
+      <label for="rule">Rule percentage (%)</label><input id="rule" type="number" value="70" step="1">
+      <h2 class="mid">Your deal</h2>
+      <label for="price">Actual purchase price ($)</label><input id="price" type="number" value="160000">
+      <label for="pcc">Purchase closing costs ($)</label><input id="pcc" type="number" value="3000">
+      <label for="months">Months from purchase to resale</label><input id="months" type="number" value="6" step="1">
+      <label for="holdmo">Holding costs ($/month — taxes, insurance, utilities)</label><input id="holdmo" type="number" value="600">
+      <label for="sellpct">Selling costs (% of resale price)</label><input id="sellpct" type="number" value="8" step="0.5">
+      <h2 class="mid">Financing (set % financed to 0 for all-cash)</h2>
+      <label for="finpct">% of purchase + rehab financed</label><input id="finpct" type="number" value="85" step="1">
+      <label for="finrate">Interest rate (% APR, interest-only)</label><input id="finrate" type="number" value="10.5" step="0.05">
+      <label for="finpts">Origination points (%)</label><input id="finpts" type="number" value="2" step="0.5">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile hero"><div class="k"><span id="rulelabel">70</span>% rule max offer</div><div class="v" id="mao">–</div><div class="s"><span id="rulelabel2">70</span>% × ARV − rehab</div></div>
+        <div class="tile"><div class="k">Est. net profit</div><div class="v" id="profit">–</div><div class="s">after every cost, incl. selling</div></div>
+        <div class="tile"><div class="k">ROI on cash</div><div class="v" id="roi">–</div><div class="s">profit ÷ cash invested</div></div>
+        <div class="tile"><div class="k">Annualized ROI</div><div class="v" id="aroi">–</div><div class="s">simple: ROI × 12 ÷ months</div></div>
+        <div class="tile"><div class="k">Cash needed</div><div class="v" id="cash">–</div><div class="s">down payment + all costs you front</div></div>
+        <div class="tile"><div class="k">Total project cost</div><div class="v" id="total">–</div><div class="s">incl. selling costs at resale</div></div>
+        <div class="tile"><div class="k">Financing cost</div><div class="v" id="fincost">–</div><div class="s">points + interest over the hold</div></div>
+        <div class="tile"><div class="k">Break-even resale</div><div class="v" id="breakeven">–</div><div class="s">sale price where profit = $0</div></div>
+        <div class="tile"><div class="k">Profit margin</div><div class="v" id="margin">–</div><div class="s">profit ÷ resale price</div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+
+      <div class="cta">
+        <p><strong>Flipping is one exit — renting is the other.</strong> If the numbers say keep it, the Deal Analyzer Pro spreadsheet underwrites the rental: 5-year projection, equity build-up, full amortization schedule, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>What is the 70% rule?</h2>
+    <div class="formula">Max allowable offer (MAO) = 70% × ARV − Rehab budget</div>
+    <p>The <strong>70% rule</strong> is the house flipper's classic first-pass screen: pay no more than 70% of the <strong>after-repair value</strong> (ARV) of a property, minus what the renovation will cost. A house that should sell for $300,000 once renovated and needs $50,000 of work prices out at 70% × $300,000 − $50,000 = <strong>$160,000</strong>. Offer more than that and — the rule says — the deal's margin gets eaten by all the costs a flip quietly accumulates between closing and resale.</p>
+
+    <h2>Where the other 30% actually goes</h2>
+    <p>The rule looks arbitrary until you itemize what the 30% discount has to pay for. Take the default deal above — bought at exactly the 70% rule price, financed with a typical hard-money loan (85% of purchase + rehab at 10.5% interest-only and 2 points), held six months, sold with 8% selling costs:</p>
+    <table class="ex">
+      <tr><td>30% of the $300,000 ARV</td><td>$90,000</td></tr>
+      <tr><td>Selling costs — commission + seller closing (8% of resale)</td><td>$24,000</td></tr>
+      <tr><td>Financing — 2 points + 6 months interest on $178,500</td><td>$12,941</td></tr>
+      <tr><td>Purchase closing + 6 months holding costs</td><td>$6,600</td></tr>
+      <tr class="total"><td>Left over: your pre-tax profit (15.5% of resale)</td><td>$46,459</td></tr>
+    </table>
+    <p>That is the whole logic of the rule: roughly half of the 30% goes to transaction and carry costs, and the other half is the profit that justifies the risk. The calculator computes each line for your actual numbers rather than trusting the shorthand — change the hold to twelve months or the selling costs to 10% and watch the margin thin out in real time.</p>
+
+    <h2>The full worked example</h2>
+    <p>Here is the complete profit-and-loss the calculator produces for the default deal:</p>
+    <table class="ex">
+      <tr><td>Resale price (ARV)</td><td>$300,000</td></tr>
+      <tr><td>Purchase price (at the 70% rule MAO)</td><td>−$160,000</td></tr>
+      <tr><td>Rehab budget</td><td>−$50,000</td></tr>
+      <tr><td>Purchase closing costs</td><td>−$3,000</td></tr>
+      <tr><td>Holding costs (6 mo × $600)</td><td>−$3,600</td></tr>
+      <tr><td>Loan points (2% of $178,500)</td><td>−$3,570</td></tr>
+      <tr><td>Loan interest (10.5% APR, 6 mo)</td><td>−$9,371</td></tr>
+      <tr><td>Selling costs (8% of resale)</td><td>−$24,000</td></tr>
+      <tr class="total"><td>Net profit (pre-tax)</td><td>$46,459</td></tr>
+    </table>
+    <p>Because the loan covers 85% of purchase + rehab, the cash actually invested is $31,500 of down payment plus the closing, holding and financing costs — about <strong>$51,041</strong> — so the deal returns roughly <strong>91% on cash in six months</strong>. Leverage is why flippers tolerate hard-money pricing; it is also why a missed ARV hurts so much, since the debt doesn't shrink when the resale price does. The break-even resale here is about <strong>$249,501</strong> — a 17% cushion below the $300,000 estimate.</p>
+
+    <h2>When 70% is the wrong number</h2>
+    <p>Experienced investors treat the percentage as a dial. In <strong>competitive or high-priced metros</strong>, true 70% deals rarely trade, and the fixed costs of a flip are a smaller share of a $600,000 resale — many flippers underwrite at <strong>75–85%</strong> and rely on accurate cost estimates instead of a fat rule-of-thumb cushion. In <strong>slow or low-priced markets</strong>, where days-on-market stretch and a $90,000 house still costs real money to sell, <strong>65%</strong> is safer. The rule also assumes a sale exit: if your plan is to refinance and rent instead — the <a href="/brrrr-calculator.html">BRRRR strategy</a> — the equivalent discipline is keeping all-in cost at or under the ~70–75% of ARV a refinance lender will advance, and the deal must also carry the new mortgage (check it with our <a href="/dscr-loan-calculator.html">DSCR loan calculator</a>).</p>
+
+    <h2>What flips actually earned in 2026</h2>
+    <p>Real-world margins are thinner than the folklore. ATTOM's Q1 2026 U.S. Home Flipping Report — covering 64,348 flips, about 8% of all home sales — put the typical <strong>gross</strong> profit at <strong>$66,000</strong>, a <strong>25.4% return on the purchase price</strong>, with the typical flip taking <strong>165 days</strong>. That was the first margin improvement after seven straight quarters of decline, but still well below the 29.6% of a year earlier. And gross means gross: ATTOM's figure is simply resale price minus purchase price, before rehab, financing, holding and selling costs. Run those against a 25% gross margin and it's clear why disciplined buying — the thing the 70% rule enforces — separates profitable flippers from busy ones.</p>
+
+    <h2>Financing the flip: what hard money costs in 2026</h2>
+    <p>Most flips are financed with short-term hard-money or fix-and-flip loans sized on the project rather than your income. Typical 2026 terms: <strong>9–12% interest</strong> for experienced borrowers, <strong>1–3 origination points</strong>, terms of <strong>6–18 months</strong>, and loan caps around <strong>70–75% of ARV</strong> — lenders enforce their own version of the 70% rule. All-in annualized cost, with points and fees counted, commonly lands in the 15–25% range. The calculator models an interest-only loan on the full balance from day one, which is slightly conservative — many lenders fund rehab in draws, so you pay interest only on what's been drawn. Note what a longer hold does to the numbers: at 10.5% on $178,500, every extra month is roughly $1,560 of interest plus holding costs, which is how a slow permit or a stale listing quietly erases a third of the margin.</p>
+
+    <h2>Getting ARV right — the number everything leans on</h2>
+    <p>Every output on this page is downstream of the ARV estimate. Base it on <strong>closed sales of already-renovated comparables</strong> — similar size (within ~20% of square footage), bed/bath count, age, lot and school zone, sold within the last 3–6 months, as close as possible and ideally in the same subdivision. Adjust honestly for differences, and don't average in unrenovated sales or active listings (asking prices are hopes, not comps). The appraiser your buyer's lender sends will do exactly this exercise; if your ARV can't survive it, the resale price funds the discovery. Know your numbers at an ARV 5–10% below your estimate — the break-even tile above tells you how much room you actually have. If the flip becomes a keeper, evaluate it as a rental with our <a href="/">ROI calculator</a> and <a href="/cap-rate-calculator.html">cap rate guide</a>.</p>
+
+    <h2>Limits of the rule</h2>
+    <p>The 70% rule is a screen, not an underwrite. It says nothing about <strong>rehab estimate quality</strong> — the budget you subtract is only as good as your scope of work and contractor bids; nothing about <strong>time</strong> — six months and twelve months pass the same rule but return very different annualized results; and nothing about <strong>your cost structure</strong> — an agent-investor who lists for free, or an all-cash buyer paying no points or interest, can profitably pay more than 70%. Use the rule to reject deals fast, then let the full arithmetic above — or a complete month-by-month model — make the offer decision.</p>
+
+    <h2>Run the full numbers before you offer</h2>
+    <p>This page is the screen. For the keep-it-as-a-rental exit — 5-year cash-flow projection with rent growth, equity build-up on a full amortization schedule, break-even occupancy and side-by-side comparison against the next candidate — the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> does it in Excel, yours to keep.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial, tax or investment advice. Market figures (ATTOM Q1 2026) and loan terms are point-in-time and vary by market and lender — verify current comps, costs and loan pricing before offering.<br>More free tools: <a href="/">Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator &amp; Guide</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a></footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  function calc() {
+    const arv = +$("arv").value || 0, rehab = +$("rehab").value || 0, rule = (+$("rule").value || 0) / 100;
+    const price = +$("price").value || 0, pcc = +$("pcc").value || 0;
+    const months = +$("months").value || 0, holdmo = +$("holdmo").value || 0;
+    const sellPct = (+$("sellpct").value || 0) / 100;
+    const finPct = (+$("finpct").value || 0) / 100, finRate = (+$("finrate").value || 0) / 100, finPts = (+$("finpts").value || 0) / 100;
+
+    const mao = arv * rule - rehab;
+    const loan = (price + rehab) * finPct;
+    const pts = loan * finPts;
+    const interest = loan * finRate * months / 12;
+    const holdTotal = holdmo * months;
+    const sell = arv * sellPct;
+    const fixedCosts = price + rehab + pcc + holdTotal + pts + interest;
+    const total = fixedCosts + sell;
+    const profit = arv - total;
+    const cash = fixedCosts - loan;
+    const margin = arv > 0 ? profit / arv : null;
+    const breakeven = sellPct < 1 ? fixedCosts / (1 - sellPct) : null;
+
+    $("rulelabel").textContent = ((+$("rule").value || 0)).toFixed(0);
+    $("rulelabel2").textContent = ((+$("rule").value || 0)).toFixed(0);
+    $("mao").textContent = fmt$(mao);
+    $("profit").textContent = fmt$(profit);
+    $("roi").textContent = cash > 0 ? (profit / cash * 100).toFixed(1) + "%" : (profit > 0 ? "∞" : "–");
+    $("aroi").textContent = cash > 0 && months > 0 ? (profit / cash * 12 / months * 100).toFixed(1) + "%" : "–";
+    $("cash").textContent = fmt$(cash);
+    $("total").textContent = fmt$(total);
+    $("fincost").textContent = fmt$(pts + interest);
+    $("breakeven").textContent = breakeven !== null ? fmt$(breakeven) : "–";
+    $("margin").textContent = margin !== null ? (margin * 100).toFixed(1) + "%" : "–";
+
+    const v = $("verdict");
+    v.hidden = false;
+    const overMao = mao > 0 && price > mao + 0.005;
+    if (profit <= 0) { v.className = "badge bad"; v.textContent = "✗ Loses " + fmt$(-profit) + " at these numbers — lower the offer or cut costs"; }
+    else if (margin !== null && margin < 0.10) { v.className = "badge warn"; v.textContent = "△ Thin: " + fmt$(profit) + " profit is only " + (margin * 100).toFixed(1) + "% of resale" + (overMao ? " — price is above the " + ((+$("rule").value || 0)).toFixed(0) + "% rule max offer" : "") + ". Little room for surprises"; }
+    else { v.className = "badge good"; v.textContent = "✓ Est. profit " + fmt$(profit) + " (" + (margin * 100).toFixed(1) + "% of resale)" + (overMao ? " — note: price exceeds the " + ((+$("rule").value || 0)).toFixed(0) + "% rule max offer of " + fmt$(mao) : ""); }
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
