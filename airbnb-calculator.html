@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbnb Calculator — Short-Term Rental Revenue &amp; Profit (Free)</title>
+<meta name="description" content="Free Airbnb calculator for short-term rental investors. Enter ADR, occupancy and expenses to get annual revenue, platform fees (incl. Airbnb's 15.5% host-only fee), cash flow, cash-on-cash return, break-even occupancy and an STR vs long-term rent comparison.">
+<link rel="canonical" href="https://apophaticstudios.github.io/airbnb-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How much does Airbnb take from hosts in 2026?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Airbnb is moving all hosts to a host-only service fee of 15.5%, charged on the nightly rate plus every host-set charge — cleaning fees, pet fees, extra-guest fees — but not taxes. US and Canadian software-connected hosts switched October 27, 2025; remaining software-connected hosts followed April 13, 2026; independent hosts outside the EU switch by September 15, 2026 and EU hosts by October 13, 2026. The old split structure, where hosts paid about 3% and guests paid a separate service fee, is being phased out."}},
+    {"@type": "Question", "name": "How do you calculate Airbnb rental income?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Annual gross revenue = average daily rate (ADR) × occupied nights + cleaning fees collected per stay × number of stays. Occupied nights are 365 × your occupancy rate, and the number of stays is occupied nights divided by average length of stay. Profit then requires subtracting platform fees, cleaning costs, utilities, supplies, insurance, property tax, management, maintenance reserves and the mortgage payment."}},
+    {"@type": "Question", "name": "What is a good occupancy rate for an Airbnb?",
+     "acceptedAnswer": {"@type": "Answer", "text": "AirDNA forecasts US short-term rental occupancy of about 57.4% for 2026, slightly above the pre-pandemic average of 57.0%. But occupancy varies enormously by market and season, so underwrite with market-level data rather than the national average — and always compute the occupancy at which your specific deal breaks even."}},
+    {"@type": "Question", "name": "What is RevPAR for a short-term rental?",
+     "acceptedAnswer": {"@type": "Answer", "text": "RevPAR — revenue per available night — is your average daily rate multiplied by your occupancy rate. A $230 ADR at 62% occupancy is a RevPAR of about $143: what each calendar night actually earns once empty nights are averaged in. It is the cleanest single number for comparing pricing-plus-occupancy performance across properties."}},
+    {"@type": "Question", "name": "Is an Airbnb more profitable than a long-term rental?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Short-term rentals usually gross far more than long-term rent on the same property, but they also carry far higher costs: platform fees, cleaning every turnover, utilities, supplies, pricier STR insurance, and furnishing the unit up front. Industry benchmarks put STR operating expenses at roughly 30–70% of revenue (professional management alone commonly runs 20–30%). The honest comparison is bottom-line cash flow on the same property under both strategies — which this calculator shows side by side."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+    --warn-bg: #fdf3e3; --warn-ink: #8a5a13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+      --warn-bg: #3a2d13; --warn-ink: #e8c477;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  .card h2 + label { margin-top: 0; }
+  .card h2.mid { margin-top: 22px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  input, select { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .tile.hero { border-color: var(--accent); }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); text-decoration: none; }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 520px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex td, table.ex th { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); text-align: left; }
+  table.ex td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a></nav>
+  <header>
+    <h1>Airbnb Calculator</h1>
+    <p class="sub">Estimate what a short-term rental really earns: annual revenue from ADR, occupancy and cleaning fees, minus platform fees (including Airbnb's new 15.5% host-only fee), operating costs and the mortgage — with break-even occupancy and a head-to-head against renting the same property long-term. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Revenue</h2>
+      <label for="adr">Average daily rate — ADR ($/night)</label><input id="adr" type="number" value="230">
+      <label for="occ">Occupancy (%)</label><input id="occ" type="number" value="62" step="0.5">
+      <label for="cleanfee">Cleaning fee charged per stay ($)</label><input id="cleanfee" type="number" value="140">
+      <label for="los">Average length of stay (nights)</label><input id="los" type="number" value="3" step="0.5">
+      <label for="channel">Booking channel</label>
+      <select id="channel">
+        <option value="15.5" selected>Airbnb — host-only fee (15.5%)</option>
+        <option value="3">Airbnb — legacy split fee (3%)</option>
+        <option value="8">Vrbo (~8%)</option>
+        <option value="0">Direct booking (0%)</option>
+        <option value="custom">Custom</option>
+      </select>
+      <label for="fee">Platform fee (% of nightly + cleaning)</label><input id="fee" type="number" value="15.5" step="0.5">
+      <h2 class="mid">Purchase &amp; financing</h2>
+      <label for="price">Purchase price ($)</label><input id="price" type="number" value="380000">
+      <label for="down">Down payment (%)</label><input id="down" type="number" value="20" step="0.5">
+      <label for="rate">Interest rate (% APR)</label><input id="rate" type="number" value="7.25" step="0.05">
+      <label for="term">Loan term (years)</label><input id="term" type="number" value="30">
+      <label for="closing">Closing costs ($)</label><input id="closing" type="number" value="9500">
+      <label for="furnish">Furnishing &amp; startup budget ($)</label><input id="furnish" type="number" value="30000">
+      <h2 class="mid">Operating costs</h2>
+      <label for="cleancost">Cleaning cost per turnover ($)</label><input id="cleancost" type="number" value="120">
+      <label for="util">Utilities + internet ($/month)</label><input id="util" type="number" value="350">
+      <label for="supp">Supplies, software &amp; misc ($/month)</label><input id="supp" type="number" value="150">
+      <label for="tax">Property tax ($/yr)</label><input id="tax" type="number" value="4200">
+      <label for="ins">STR insurance ($/yr)</label><input id="ins" type="number" value="2500">
+      <label for="hoa">HOA ($/month)</label><input id="hoa" type="number" value="0">
+      <label for="mgmt">Management (% of gross revenue — 0 if self-managed)</label><input id="mgmt" type="number" value="0" step="1">
+      <label for="maint">Maintenance + CapEx reserve (% of gross revenue)</label><input id="maint" type="number" value="8" step="0.5">
+      <h2 class="mid">Long-term rent comparison</h2>
+      <label for="ltr">Market rent if leased long-term ($/month)</label><input id="ltr" type="number" value="2300">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile hero"><div class="k">Annual gross revenue</div><div class="v" id="gross">–</div><div class="s">nightly revenue + cleaning fees</div></div>
+        <div class="tile"><div class="k">Monthly cash flow</div><div class="v" id="mcf">–</div><div class="s">after all costs &amp; mortgage</div></div>
+        <div class="tile"><div class="k">Cash-on-cash</div><div class="v" id="coc">–</div><div class="s">annual cash flow ÷ cash invested</div></div>
+        <div class="tile"><div class="k">NOI (annual)</div><div class="v" id="noi">–</div><div class="s">revenue − fees − operating costs</div></div>
+        <div class="tile"><div class="k">RevPAR</div><div class="v" id="revpar">–</div><div class="s">ADR × occupancy, per available night</div></div>
+        <div class="tile"><div class="k">Break-even occupancy</div><div class="v" id="beocc">–</div><div class="s" id="cushion">covers every cost incl. mortgage</div></div>
+        <div class="tile"><div class="k">Platform fees (annual)</div><div class="v" id="pfees">–</div><div class="s" id="pfeesub">at 15.5% of nightly + cleaning</div></div>
+        <div class="tile"><div class="k">Cash invested</div><div class="v" id="cash">–</div><div class="s">down + closing + furnishing</div></div>
+        <div class="tile"><div class="k">STR vs long-term rent</div><div class="v" id="vsltr">–</div><div class="s" id="ltrsub">monthly cash-flow difference</div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+
+      <div class="cta">
+        <p><strong>Want the full analysis?</strong> The Deal Analyzer Pro spreadsheet underwrites the whole deal: 5-year projection, equity build-up, full amortization schedule, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>How to estimate Airbnb revenue</h2>
+    <p>Short-term rental revenue has two parts: <strong>nightly revenue</strong> and <strong>cleaning-fee income</strong>. Nightly revenue is your average daily rate times the nights you actually fill; cleaning income is the fee you charge per stay times the number of stays (occupied nights ÷ average length of stay).</p>
+    <div class="formula">Gross revenue = ADR × (365 × occupancy) + cleaning fee × stays</div>
+    <p>The most common underwriting mistake is multiplying the listing price by 365. Empty nights earn nothing — which is why operators track <strong>RevPAR</strong> (revenue per <em>available</em> night = ADR × occupancy). A $230 listing at 62% occupancy is really a $143/night property. The second most common mistake is stopping at revenue: platform fees, turnovers, utilities and furnishing consume a large share of it, which is what the rest of this calculator measures.</p>
+
+    <h2>Worked example: $380,000 property, $230 ADR, 62% occupancy</h2>
+    <p>The calculator's default deal, end to end — 20% down at 7.25%, guests booking through Airbnb at the 15.5% host-only fee, 3-night average stays, self-managed:</p>
+    <table class="ex">
+      <tr><td>Nightly revenue (226.3 nights × $230)</td><td>$52,049</td></tr>
+      <tr><td>Cleaning-fee income (75.4 stays × $140)</td><td>$10,561</td></tr>
+      <tr class="total"><td>Gross revenue</td><td>$62,610</td></tr>
+      <tr><td>Airbnb host fee (15.5%)</td><td>−$9,704</td></tr>
+      <tr><td>Cleaning costs (75.4 turnovers × $120)</td><td>−$9,052</td></tr>
+      <tr><td>Utilities + internet, supplies &amp; software</td><td>−$6,000</td></tr>
+      <tr><td>Property tax + STR insurance</td><td>−$6,700</td></tr>
+      <tr><td>Maintenance + CapEx reserve (8% of gross)</td><td>−$5,009</td></tr>
+      <tr class="total"><td>Net operating income</td><td>$26,144</td></tr>
+      <tr><td>Mortgage (P&amp;I, $304,000 at 7.25%/30yr)</td><td>−$24,886</td></tr>
+      <tr class="total"><td>Annual cash flow</td><td>$1,259&nbsp;&nbsp;($105/mo)</td></tr>
+    </table>
+    <p>Cash invested is $76,000 down + $9,500 closing + $30,000 furnishing = <strong>$115,500</strong>, so cash-on-cash is just <strong>1.1%</strong> — and break-even occupancy is <strong>60.0%</strong>, only two points below plan. That's not a bearish thumb on the scale; it's what full-price deals at 2026 rates look like. STR returns are made by buying below market, raising RevPAR (better listing, dynamic pricing, longer season), or borrowing cheaper — and the calculator lets you test each lever.</p>
+
+    <h2>What Airbnb actually takes in 2026</h2>
+    <p>Airbnb is migrating every host to a <strong>host-only service fee of 15.5%</strong>, replacing the old split structure (host paid ~3%, guest paid a separate service fee). The fee applies to the nightly rate <em>plus every host-set charge</em> — cleaning fees, pet fees, extra-guest fees — though not taxes. US and Canadian software-connected hosts switched on October 27, 2025; the remaining software-connected hosts followed April 13, 2026; independent hosts outside the EU move by September 15, 2026, and EU hosts by October 13, 2026. Reservations confirmed before your migration date keep their old terms.</p>
+    <p>For comparison, <strong>Vrbo</strong> charges pay-per-booking hosts a 5% commission plus a 3% payment-processing fee (~8% total), and <strong>direct bookings</strong> cost only your payment processing. The channel dropdown above prices each one — on the default deal, switching the same bookings from a 15.5% fee to a direct-booking site changes cash flow by over $9,700 a year, which is why established operators work so hard on repeat and direct business.</p>
+
+    <h2>The 2026 short-term rental market in numbers</h2>
+    <p>Per AirDNA's 2026 US outlook: forecast occupancy of <strong>57.4%</strong> (just above the pre-pandemic average of 57.0%), RevPAR growth of about <strong>2.9%</strong>, and demand and new supply each growing roughly <strong>2.7%</strong> — slowing supply growth is finally restoring pricing power after the post-2021 listing boom. Nightly-rate growth accelerated from 0.7% year-over-year in January to about 3% by spring. Two cautions: national averages hide huge market-level spread (top metros posted 10%+ RevPAR growth while others declined), and international inbound demand has been soft. Underwrite with market-level comps for your street and property type, not the national number — then stress-test occupancy 10–20% below your estimate.</p>
+
+    <h2>The expenses first-time hosts forget</h2>
+    <p>Industry benchmarks put total STR operating costs at roughly <strong>30–70% of revenue</strong> — far above a long-term rental's ratio. The line items that most often go missing from a first analysis: the <strong>cleaning you pay for</strong> (your $120 turnover cost is charged every stay whether or not the $140 guest fee covers it), <strong>utilities and internet</strong> (you pay them, not a tenant), <strong>supplies and consumables</strong> (linens, toiletries, coffee — plus pricing software and a channel manager), <strong>STR-specific insurance</strong> (a landlord policy typically won't cover commercial nightly use), <strong>professional management</strong> if you're not self-managing (commonly 20–30% of revenue, versus 8–10% for long-term rentals), and the <strong>furnishing and startup budget</strong> — easily $20,000–40,000 for a whole home, and it belongs in your cash-invested base, where it quietly drags down cash-on-cash return.</p>
+
+    <h2>Break-even occupancy: the number that keeps you safe</h2>
+    <p>Some of your costs scale with bookings (platform fees, cleaning, management, maintenance reserves) — but the mortgage, taxes, insurance, utilities and HOA arrive whether anyone books or not. Break-even occupancy is the occupancy at which contribution from bookings exactly covers those fixed costs. The calculator solves it in closed form and shows your <strong>cushion</strong> — the gap between planned and break-even occupancy. A deal that breaks even at 45% when the market runs 60% can absorb a bad season or a new competitor next door; a deal that needs 60% in a 57% market is priced for perfection.</p>
+
+    <h2>Airbnb vs long-term rental: same property, two businesses</h2>
+    <p>The bottom tile compares monthly cash flow under both strategies. The long-term side assumes 5% vacancy, a 10% maintenance/CapEx reserve, and the same tax, insurance and mortgage (in practice a landlord policy costs somewhat less than STR insurance, so the long-term side is, if anything, slightly understated). The long-term side also doesn't need the furnishing budget — so even when STR cash flow wins, check whether it wins by enough to pay for $30,000 of furniture and a second job managing turnovers. Two useful companions: our <a href="/index.html">rental ROI calculator</a> underwrites the long-term version of the deal in full, and if you're financing on the property's income rather than your W-2, DSCR lenders typically qualify the loan on <em>long-term market rent</em> even for an STR (a few will use documented STR income) — see how they compute it in our <a href="/dscr-loan-calculator.html">DSCR loan calculator</a>. Buying distressed to renovate first? Run the <a href="/brrrr-calculator.html">BRRRR calculator</a>, and screen the purchase price with the <a href="/cap-rate-calculator.html">cap rate calculator</a>.</p>
+
+    <h2>What this calculator doesn't model</h2>
+    <p>This is an annualized screen, not a full pro forma. It holds ADR and occupancy flat across the year, while real STR markets are strongly seasonal — a beach town might do 90% July occupancy and 25% in January, which changes monthly cash needs even when the annual average matches. It also excludes lodging/occupancy taxes (usually collected on top of your rates and remitted, but check your jurisdiction), permits and licensing fees, HOA or municipal STR restrictions — verify these <em>before</em> buying, since a ban zeroes the model — and income-tax effects. Sources for the market figures above: AirDNA 2026 US outlook; Airbnb/Vrbo fee structures per host-platform documentation, retrieved August 2026.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial, tax or investment advice. Figures are estimates; verify local STR rules, taxes and comps before purchasing.<br>More tools: <a href="/">Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator &amp; Guide</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a> · <a href="/70-percent-rule-calculator.html">70% Rule Calculator</a></footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const fmtP1 = n => n.toFixed(1) + "%";
+  $("channel").addEventListener("change", () => {
+    const v = $("channel").value;
+    if (v !== "custom") $("fee").value = v;
+    calc();
+  });
+  function calc() {
+    const adr = +$("adr").value || 0, occ = (+$("occ").value || 0) / 100, cleanFee = +$("cleanfee").value || 0;
+    const los = +$("los").value || 0, feePct = (+$("fee").value || 0) / 100;
+    const price = +$("price").value || 0, downPct = (+$("down").value || 0) / 100;
+    const rate = (+$("rate").value || 0) / 100 / 12, nper = (+$("term").value || 0) * 12;
+    const closing = +$("closing").value || 0, furnish = +$("furnish").value || 0;
+    const cleanCost = +$("cleancost").value || 0, util = +$("util").value || 0, supp = +$("supp").value || 0;
+    const tax = +$("tax").value || 0, ins = +$("ins").value || 0, hoa = +$("hoa").value || 0;
+    const mgmtPct = (+$("mgmt").value || 0) / 100, maintPct = (+$("maint").value || 0) / 100;
+    const ltrRent = +$("ltr").value || 0;
+
+    const nights = 365 * occ;
+    const stays = los > 0 ? nights / los : 0;
+    const gross = adr * nights + cleanFee * stays;
+    const pfees = gross * feePct;
+    const mgmt = gross * mgmtPct, maint = gross * maintPct, cleaning = cleanCost * stays;
+    const fixedOps = util * 12 + supp * 12 + tax + ins + hoa * 12;
+    const noi = gross - pfees - mgmt - maint - cleaning - fixedOps;
+    const loan = price * (1 - downPct);
+    const pi = nper === 0 ? 0 : (rate === 0 ? loan / nper : loan * rate / (1 - Math.pow(1 + rate, -nper)));
+    const acf = noi - pi * 12, mcf = acf / 12;
+    const cash = price * downPct + closing + furnish;
+    const coc = cash > 0 ? acf / cash * 100 : 0;
+    const revpar = adr * occ;
+    const contrib = gross - pfees - mgmt - maint - cleaning; // scales with occupancy
+    const fixedAll = fixedOps + pi * 12;
+    const beOcc = contrib > 0 ? (occ * 100) * fixedAll / contrib : Infinity;
+    const cushion = occ * 100 - beOcc;
+    const ltrCF = ltrRent * 0.95 - ltrRent * 0.10 - tax / 12 - ins / 12 - hoa - pi;
+    const diff = mcf - ltrCF;
+
+    $("gross").textContent = fmt$(gross);
+    $("mcf").textContent = fmt$(mcf);
+    $("coc").textContent = fmtP1(coc);
+    $("noi").textContent = fmt$(noi);
+    $("revpar").textContent = "$" + revpar.toFixed(0);
+    $("pfees").textContent = fmt$(pfees);
+    $("pfeesub").textContent = "at " + (feePct * 100).toFixed(1) + "% of nightly + cleaning";
+    $("cash").textContent = fmt$(cash);
+    if (!isFinite(beOcc)) { $("beocc").textContent = "n/a"; $("cushion").textContent = "bookings don't cover their own variable costs"; }
+    else if (beOcc > 100) { $("beocc").textContent = ">100%"; $("cushion").textContent = "can't break even at any occupancy"; }
+    else { $("beocc").textContent = fmtP1(beOcc); $("cushion").textContent = "cushion vs plan: " + (cushion >= 0 ? "+" : "") + cushion.toFixed(1) + " pts"; }
+    if (ltrRent > 0) { $("vsltr").textContent = (diff >= 0 ? "+" : "") + fmt$(diff).replace("$-", "-$"); $("ltrsub").textContent = "STR " + fmt$(mcf) + "/mo vs LTR " + fmt$(ltrCF) + "/mo"; }
+    else { $("vsltr").textContent = "–"; $("ltrsub").textContent = "enter market rent to compare"; }
+
+    const v = $("verdict");
+    v.hidden = false;
+    if (acf < 0) { v.className = "badge bad"; v.textContent = "✗ Negative cash flow — this deal costs you " + fmt$(-mcf) + "/month at plan occupancy"; }
+    else if (coc < 6 || cushion < 5) { v.className = "badge warn"; v.textContent = "△ Thin deal — positive but fragile (cash-on-cash " + fmtP1(coc) + ", occupancy cushion " + cushion.toFixed(1) + " pts). Stress-test before buying."; }
+    else { v.className = "badge good"; v.textContent = "✓ Solid numbers — " + fmt$(mcf) + "/month, " + fmtP1(coc) + " cash-on-cash, breaks even at " + fmtP1(beOcc) + " occupancy"; }
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", () => {
+    if (i.id === "fee") $("channel").value = "custom";
+    calc();
+  }));
+  calc();
+</script>
+</body>
+</html>
