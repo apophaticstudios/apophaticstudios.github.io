@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50% Rule Calculator — Rental Property Operating Expenses &amp; Full Expense List</title>
+<meta name="description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find your break-even price and rent. Full 2026 rental expense list included.">
+<link rel="canonical" href="https://apophaticstudios.github.io/50-percent-rule-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
+<meta property="og:title" content="50% Rule Calculator — Rental Operating Expenses &amp; Cash Flow">
+<meta property="og:description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find your break-even price and rent. Full 2026 rental expense list included.">
+<meta property="og:url" content="https://apophaticstudios.github.io/50-percent-rule-calculator.html">
+<meta property="og:image" content="https://apophaticstudios.github.io/og/og-50-rule.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="50% Rule Calculator — free, estimates rental operating expenses and cash flow, compares the rule to a line-item budget">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="50% Rule Calculator — Rental Operating Expenses &amp; Cash Flow">
+<meta name="twitter:description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find your break-even price and rent. Full 2026 rental expense list included.">
+<meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-50-rule.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the 50% rule in real estate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 50% rule is a screening shortcut: assume that about half of a rental property's gross rent will go to operating expenses — vacancy, property taxes, insurance, repairs, capital-expenditure reserves, property management, and any utilities or HOA dues the landlord pays. The other half is net operating income, from which the mortgage payment is subtracted to estimate cash flow. A $2,200/month rental is assumed to cost about $1,100/month to operate before the mortgage."}},
+    {"@type": "Question", "name": "Does the 50% rule include the mortgage payment?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No. The 50% covers operating expenses only. Cash flow under the rule is: monthly rent × 50% − mortgage principal and interest. Because the mortgage is excluded, a property can pass the 50% rule on expenses and still lose money once the loan payment is counted — which is why the calculator shows cash flow after debt service."}},
+    {"@type": "Question", "name": "Does the 50% rule include property management and CapEx?",
+     "acceptedAnswer": {"@type": "Answer", "text": "In the version most investors use, yes: the 50% is meant to cover everything except the mortgage, including a property-management fee (even if you self-manage, your time has value) and a reserve for capital expenditures such as a roof, HVAC or water heater. Some writers exclude management or HOA dues; if you do, your expense ratio should be correspondingly lower than 50%."}},
+    {"@type": "Question", "name": "Is the 50% rule accurate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "It is a reasonable average for a typical single-family or small multifamily rental with professional management, but it fails at the extremes. Expenses run well above 50% of rent for low-rent units (fixed costs like taxes, insurance and turnover don't shrink with rent), high-property-tax states, condos with HOA dues, older properties, and multifamily where the landlord pays water, sewer and trash. They can run 35–45% for newer, self-managed homes in low-tax states. Use the rule to screen, then replace it with a line-item budget before you offer."}},
+    {"@type": "Question", "name": "What is the difference between the 50% rule and the 1% rule?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 1% rule compares rent to price (monthly rent should be at least 1% of the purchase price); the 50% rule compares expenses to rent (operating costs about half of gross rent). Together they imply a cap rate: a property that rents for exactly 1% of its price with a 50% expense ratio has net operating income of 0.5% of price per month, or a 6% cap rate."}},
+    {"@type": "Question", "name": "What is a good operating expense ratio for a rental property?",
+     "acceptedAnswer": {"@type": "Answer", "text": "For long-term residential rentals, total operating expenses (including vacancy, management and CapEx reserves) most often land between 35% and 55% of gross rent. Below 35% usually means a line item is missing — most often CapEx, vacancy or management. Above 55% is common for low-rent, high-tax or landlord-pays-utilities properties and means the 50% rule would have flattered the deal."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+    --warn-bg: #fdf3e3; --warn-ink: #8a5a13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+      --warn-bg: #3a2d13; --warn-ink: #e8c477;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  .card h2 + label { margin-top: 0; }
+  .card h2.mid { margin-top: 22px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .tile.hero { border-color: var(--accent); }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo h3 { font-size: 1rem; margin: 22px 0 6px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); text-decoration: none; }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 620px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex td, table.ex th { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); text-align: left; vertical-align: top; }
+  table.ex th { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
+  table.ex td.n, table.ex th.n { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  .tablewrap { overflow-x: auto; }
+  table.list { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 0.88rem; }
+  table.list th, table.list td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; color: var(--ink-2); }
+  table.list th { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+  table.list td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a></nav>
+  <header>
+    <h1>50% Rule Calculator</h1>
+    <p class="sub">Screen a rental in seconds with the 50% rule, then check it against a real line-by-line expense budget — and see the purchase price and rent where the deal breaks even. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>The deal</h2>
+      <label for="rent">Monthly rent ($)</label><input id="rent" type="number" value="2200">
+      <label for="price">Purchase price ($)</label><input id="price" type="number" value="250000">
+      <label for="down">Down payment (%)</label><input id="down" type="number" value="20" step="0.5">
+      <label for="rate">Interest rate (% APR)</label><input id="rate" type="number" value="6.5" step="0.05">
+      <label for="term">Loan term (years)</label><input id="term" type="number" value="30">
+      <label for="rule">Rule percentage (% of rent to expenses)</label><input id="rule" type="number" value="50" step="1">
+
+      <h2 class="mid">Your line-item budget</h2>
+      <label for="vac">Vacancy &amp; credit loss (% of rent)</label><input id="vac" type="number" value="8" step="0.5">
+      <label for="tax">Property tax ($/yr)</label><input id="tax" type="number" value="3200">
+      <label for="ins">Landlord insurance ($/yr)</label><input id="ins" type="number" value="1400">
+      <label for="maint">Repairs &amp; maintenance (% of rent)</label><input id="maint" type="number" value="8" step="0.5">
+      <label for="capex">CapEx reserve (% of rent)</label><input id="capex" type="number" value="5" step="0.5">
+      <label for="mgmt">Property management (% of collected rent)</label><input id="mgmt" type="number" value="10" step="0.5">
+      <label for="lease">Leasing &amp; turnover ($/yr)</label><input id="lease" type="number" value="700">
+      <label for="hoa">HOA dues ($/mo)</label><input id="hoa" type="number" value="0">
+      <label for="util">Landlord-paid utilities &amp; services ($/mo)</label><input id="util" type="number" value="0">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile hero"><div class="k">Operating expenses — <span class="rulelbl">50%</span> rule</div><div class="v" id="ruleOpex">–</div><div class="s"><span id="ruleOpexS">50% of gross rent</span>, per month</div></div>
+        <div class="tile"><div class="k">Cash flow — <span class="rulelbl">50%</span> rule</div><div class="v" id="ruleCF">–</div><div class="s">rent − expenses − mortgage P&amp;I</div></div>
+        <div class="tile"><div class="k">Cash flow — itemized</div><div class="v" id="itemCF">–</div><div class="s">using your line items</div></div>
+        <div class="tile"><div class="k">Itemized expenses</div><div class="v" id="itemOpex">–</div><div class="s"><span id="itemRatio">–</span> of gross rent, per month</div></div>
+        <div class="tile"><div class="k">Rule vs. itemized</div><div class="v" id="gap">–</div><div class="s" id="gapS">difference per month</div></div>
+        <div class="tile"><div class="k">NOI — <span class="rulelbl">50%</span> rule</div><div class="v" id="noi">–</div><div class="s">per year · cap rate <span id="cap">–</span></div></div>
+        <div class="tile"><div class="k">Break-even price</div><div class="v" id="bePrice">–</div><div class="s">for $0 cash flow with this loan · itemized: <span id="bePriceI">–</span></div></div>
+        <div class="tile"><div class="k">Break-even rent</div><div class="v" id="beRent">–</div><div class="s">for $0 cash flow at this price · itemized: <span id="beRentI">–</span></div></div>
+        <div class="tile"><div class="k">Monthly P&amp;I</div><div class="v" id="pi">–</div><div class="s">principal &amp; interest on <span id="loan">–</span></div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+
+      <div class="cta">
+        <p><strong>The 50% rule gets you to "maybe."</strong> The Deal Analyzer Pro spreadsheet gets you to "yes" or "no": every expense line, cash flow after the mortgage, cash-on-cash return, a 5-year projection with equity build-up, full amortization, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>What is the 50% rule?</h2>
+    <p>The 50% rule is a screening shortcut for rental property: assume that <strong>about half of gross rent goes to operating expenses</strong>, before the mortgage. What's left is net operating income (NOI); subtract the loan payment and you have a rough cash-flow estimate — fast enough to run on a listing while you're still standing in the driveway.</p>
+    <div class="formula">Operating expenses ≈ Gross rent × 50%<br>Cash flow ≈ Gross rent × 50% − Mortgage P&amp;I</div>
+    <p>The "50%" is meant to swallow everything a landlord pays to keep the unit rented and standing: vacancy and credit loss, property taxes, landlord insurance, repairs and maintenance, a reserve for big-ticket replacements (CapEx), property management, leasing and turnover costs, and any HOA dues or utilities the owner covers. It deliberately <strong>excludes the mortgage</strong> — that's a financing choice, not a property cost — and it excludes your income taxes and non-cash depreciation. Some versions of the rule leave out management or HOA; we use the all-in version, because a rule that leaves out costs you'll actually pay isn't screening anything.</p>
+    <p>The rule earned its place because it fixes the most common beginner mistake: budgeting only for taxes and insurance and pretending vacancy, repairs and a future roof won't happen. But it is a population average, not a property forecast. The calculator above therefore does two things at once — it applies the rule, and it lets you replace the rule with a line-item budget so you can see how far apart the two land for <em>this</em> deal.</p>
+
+    <h2>Worked example: $250,000 house, $2,200 rent</h2>
+    <p>The defaults above describe a $250,000 single-family rental bought with 20% down at 6.5% on a 30-year loan, renting for $2,200/month, with a fully loaded line-item budget: 8% vacancy (one month a year), $3,200 property tax, $1,400 landlord insurance, 8% repairs, 5% CapEx reserve, 10% management on collected rent, and $700/year of leasing and turnover costs. Here is the rule and the budget side by side, per month:</p>
+    <div class="tablewrap">
+    <table class="ex">
+      <tr><th>Line</th><th class="n">50% rule</th><th class="n">Itemized</th></tr>
+      <tr><td>Gross rent</td><td class="n">$2,200.00</td><td class="n">$2,200.00</td></tr>
+      <tr><td>Vacancy &amp; credit loss (8%)</td><td class="n">—</td><td class="n">−$176.00</td></tr>
+      <tr><td>Property tax ($3,200 ÷ 12)</td><td class="n">—</td><td class="n">−$266.67</td></tr>
+      <tr><td>Landlord insurance ($1,400 ÷ 12)</td><td class="n">—</td><td class="n">−$116.67</td></tr>
+      <tr><td>Repairs &amp; maintenance (8%)</td><td class="n">—</td><td class="n">−$176.00</td></tr>
+      <tr><td>CapEx reserve (5%)</td><td class="n">—</td><td class="n">−$110.00</td></tr>
+      <tr><td>Management (10% of $2,024 collected)</td><td class="n">—</td><td class="n">−$202.40</td></tr>
+      <tr><td>Leasing &amp; turnover ($700 ÷ 12)</td><td class="n">—</td><td class="n">−$58.33</td></tr>
+      <tr class="total"><td>Total operating expenses</td><td class="n">−$1,100.00 (50.0%)</td><td class="n">−$1,106.07 (50.3%)</td></tr>
+      <tr><td>Net operating income</td><td class="n">$1,100.00</td><td class="n">$1,093.93</td></tr>
+      <tr><td>Mortgage P&amp;I ($200,000 at 6.5%, 30 yr)</td><td class="n">−$1,264.14</td><td class="n">−$1,264.14</td></tr>
+      <tr class="total"><td>Monthly cash flow</td><td class="n">−$164.14</td><td class="n">−$170.20</td></tr>
+    </table>
+    </div>
+    <p>Two things stand out. First, for a plain single-family rental with professional management, the line-item budget lands at <strong>50.3% of rent</strong> — almost exactly what the rule predicts, which is why the rule has survived for decades. Second, <strong>passing the expense test doesn't mean the deal works</strong>: at 2026 rates and 20% down, this house loses about $165–170 a month once the mortgage is paid. The rule tells you it takes a price near <strong>$217,500</strong> (the break-even-price tile) or rent of about <strong>$2,528</strong> (the break-even-rent tile) for this deal to stop costing you money. That is the rule's real job — turning a listing into a target price in one step.</p>
+
+    <h2>The complete rental property expense list</h2>
+    <p>When you graduate from the rule to a budget, these are the lines to fill in. Ranges are for long-term residential rentals; the benchmarks are national figures current as of 2026 and are starting points, not substitutes for local quotes.</p>
+    <div class="tablewrap">
+    <table class="list">
+      <tr><th>Expense</th><th>Typical range</th><th>How to estimate it</th></tr>
+      <tr><td>Vacancy &amp; credit loss</td><td>5–10% of rent</td><td>The U.S. rental vacancy rate was <strong>7.3%</strong> in Q2 2026 (7.0% a year earlier) per the Census Bureau's Housing Vacancies survey — 8.0% in principal cities, 6.9% in suburbs, 5.8% outside metros; 9.5% in the South and 5.3% in the West. One month empty per year is 8.3%. Include a little for unpaid rent.</td></tr>
+      <tr><td>Property taxes</td><td>0.3–1.9% of value/yr</td><td>ATTOM's 2025 tax analysis (April 2026) puts the average single-family bill at <strong>$4,427</strong> (up 3%) and the national effective rate at <strong>0.90%</strong>. State averages run from 0.33% (Hawaii) to 1.84% (Illinois) and 1.58% (New Jersey). Use the county's actual bill — and check whether a sale triggers reassessment at your price.</td></tr>
+      <tr><td>Landlord insurance</td><td>$900–$1,800/yr for a $300k dwelling</td><td>Landlord (DP-3) policies run roughly <strong>25% more than homeowners</strong> coverage; state averages span about $890 (Idaho) to $2,560 (Louisiana) per insurer Steadily. Coastal, wildfire and hail markets can double the range. Get a quote — 2020s premium inflation makes old numbers useless.</td></tr>
+      <tr><td>Repairs &amp; maintenance</td><td>5–10% of rent</td><td>Four rules of thumb, all rough: <strong>1% of property value</strong> per year; <strong>$1 per square foot</strong> per year; the <strong>5x rule</strong> (annual repairs ≈ 1.5 × one month's rent); or 5–10% of rent. Older homes, older systems and cheap finishes push toward the top. Landscaping, snow and pest control belong here if you pay them.</td></tr>
+      <tr><td>CapEx reserve</td><td>5–10% of rent</td><td>Money set aside for items that fail every 10–30 years: roof, HVAC, water heater, appliances, flooring, driveway, windows, plumbing. The precise method is <strong>replacement cost ÷ remaining life</strong> for each item, summed per month — e.g. an item you expect to replace for $12,000 in 15 years needs $12,000 ÷ 180 ≈ $67/month. Percent-of-rent is the shortcut when you don't yet know the property.</td></tr>
+      <tr><td>Property management</td><td>8–12% of collected rent</td><td><strong>10%</strong> is the 2026 benchmark for single-family (DoorLoop); flat fees exist in some metros. Budget it even if you self-manage — your time isn't free, and the number should survive you hiring help. Watch for maintenance markups (10–15%) and setup fees.</td></tr>
+      <tr><td>Leasing &amp; turnover</td><td>$500–$1,500/yr</td><td>Tenant-placement fees run <strong>50–100% of one month's rent</strong>; renewals $200–$500. Add make-ready costs (paint, cleaning, small repairs) each turn. Divide the per-turn total by expected years of tenancy — a $2,000 turn every three years is about $670/yr.</td></tr>
+      <tr><td>HOA dues</td><td>$0–$500+/mo</td><td>Fixed and non-negotiable for condos and many townhomes. Also budget for special assessments, and read the rental cap and reserve study before buying.</td></tr>
+      <tr><td>Landlord-paid utilities</td><td>$0–$300+/mo</td><td>Single-family tenants usually pay everything. In small multifamily the owner often pays water, sewer, trash, common-area electric and sometimes heat. Ask for 12 months of actual bills.</td></tr>
+      <tr><td>Other operating costs</td><td>1–3% of rent</td><td>Bookkeeping software, rental licences and inspections (city-specific), advertising, legal and eviction costs ($300–$1,000+ per case when handled by a manager), accountant, mileage. Small individually; not zero in aggregate.</td></tr>
+    </table>
+    </div>
+    <p><strong>Not operating expenses:</strong> the mortgage principal and interest (debt service), income taxes, depreciation (a non-cash deduction), closing costs (part of your cash invested), and capital improvements (paid out of the CapEx reserve you already budgeted). Keep them out of the 50% and out of NOI, or your cap rate comparisons will be meaningless.</p>
+
+    <h2>When the 50% rule is the wrong number</h2>
+    <p>The rule works because, across many ordinary properties, percentage-based costs (vacancy, repairs, management) and dollar-based costs (taxes, insurance, turnover) happen to sum to about half of rent. Break either half of that coincidence and the rule fails — usually in the direction that flatters the deal.</p>
+    <h3>Low-rent units</h3>
+    <p>Taxes, insurance and a turnover don't shrink because rent is $950 instead of $2,200. A $1,200 insurance policy and $1,500 tax bill are 24% of a $950 rent before a single repair, and a $1,500 make-ready is 13% of a year's gross. Cheap properties routinely run <strong>60–70%</strong> expense ratios, which is why many "cash cows" on paper barely cover themselves.</p>
+    <h3>High-property-tax states</h3>
+    <p>At Illinois's 1.84% average effective rate, taxes on a $250,000 house are about $4,600/yr — $383/month, or 17% of a $2,200 rent by themselves. Swap that into the default budget and the expense ratio jumps from 50% to about 56%. New Jersey (1.58%), Vermont (1.40%), Connecticut (1.36%) and Ohio (1.32%) create the same problem; Hawaii, Idaho, Wyoming, Arizona and Alabama (0.33–0.43%) go the other way.</p>
+    <h3>Condos, HOAs and landlord-paid utilities</h3>
+    <p>A $350 HOA fee is 16% of a $2,200 rent — on top of a budget that was already at 50%. Multifamily where the owner pays water, sewer and trash adds another 5–10%. Neither is optional, so the rule understates costs every time.</p>
+    <h3>Older properties</h3>
+    <p>A 1950s house with original plumbing, a 20-year-old roof and a furnace on borrowed time needs a CapEx reserve two or three times the 5% default. The rule doesn't know the age of the building; your inspection report does.</p>
+    <h3>When 50% is too pessimistic</h3>
+    <p>A newer, self-managed house in a low-tax state can run 35–40% with everything counted. Even then, keep the management line in your model: a deal that only works because you'll do the work for free is a job, not an investment.</p>
+
+    <h2>50% rule vs. 1% rule vs. cap rate</h2>
+    <p>These three screens answer different questions and are strongest together. The <strong><a href="/">1% rule</a></strong> compares rent to price (monthly rent ≥ 1% of purchase price). The <strong>50% rule</strong> compares expenses to rent. Combine them and you get a <strong><a href="/cap-rate-calculator.html">cap rate</a></strong>: a property renting for exactly 1% of its price with a 50% expense ratio produces NOI of 0.5% of price per month — 6% per year — before financing. That is why "passes the 1% rule" was a decent proxy for "cash flows" when mortgage rates were 4%, and a poor one at 6.5–7%: the 6% unleveraged yield is now below the cost of debt, so leverage subtracts from cash flow instead of adding to it. Our default deal shows exactly that — rent is 0.88% of price, the expense ratio is 50%, and the loan costs more than the property nets.</p>
+
+    <h2>Using the rule backwards: break-even price and rent</h2>
+    <p>The most useful thing about a rule with one variable is that it solves in both directions. If cash flow must be at least zero, then the largest mortgage payment you can afford is <strong>rent × (1 − expense ratio)</strong>, and the price follows from your loan terms:</p>
+    <div class="formula">Max P&amp;I = Rent × (1 − ratio)<br>Break-even price = Max P&amp;I ÷ payment factor ÷ (1 − down payment %)<br>Break-even rent = P&amp;I ÷ (1 − ratio)</div>
+    <p>The payment factor is the standard mortgage constant for your rate and term — for 6.5% over 30 years it is about 0.00632 per dollar of loan, so $1,100 of available P&amp;I supports a $174,000 loan and, with 20% down, a price of about $217,500. The calculator shows both break-even figures under the rule and under your itemized budget; the itemized version is the one to take into a negotiation, since it reflects the taxes and insurance actually attached to this house. Raising the down payment moves the break-even price up (less debt to service) but lowers cash-on-cash return — see <a href="/">the ROI calculator</a> for that trade-off, or the <a href="/dscr-loan-calculator.html">DSCR loan calculator</a> for how a lender would view the same numbers.</p>
+
+    <h2>After you buy: replace the rule with the ledger</h2>
+    <p>The 50% rule is a pre-purchase tool. Once you own the property, every line in the table above becomes an actual number in a bank statement, and the right expense ratio is whatever twelve months of receipts say it is. Track income and expenses by category from day one — for taxes (Schedule E wants them that way anyway), for refinancing (lenders ask for actuals), and so that your next deal's budget is built from your own history instead of a rule of thumb. If you're buying distressed and refinancing, the <a href="/brrrr-calculator.html">BRRRR calculator</a> applies the same expense logic to the post-rehab rent; if you'd rather flip than hold, the <a href="/70-percent-rule-calculator.html">70% rule calculator</a> is the equivalent one-variable screen for resale deals; and if the property might work as a short-term rental, the <a href="/airbnb-calculator.html">Airbnb calculator</a> shows how different the expense stack becomes.</p>
+
+    <h2>Run the full numbers before you offer</h2>
+    <p>Use the rule to decide which listings deserve ten more minutes. Then give them the ten minutes: pull the actual tax bill, get an insurance quote, walk the mechanicals, and put every line into a model that also handles the loan, the 5-year picture and the exit. That full underwriting pass — with every expense line, amortization, equity build-up and side-by-side deal comparison — is what the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> does.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial or investment advice. Benchmarks cited: U.S. Census Bureau Housing Vacancies &amp; Homeownership, Q2 2026 (released July 28, 2026); ATTOM 2025 property tax analysis (April 9, 2026); Steadily and DoorLoop 2026 cost guides. See also: <a href="/">Rental Property ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a> · <a href="/70-percent-rule-calculator.html">70% Rule Calculator</a> · <a href="/airbnb-calculator.html">Airbnb Calculator</a>.</footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const fmtP1 = n => (n * 100).toFixed(1) + "%";
+  const fmtP2 = n => (n * 100).toFixed(2) + "%";
+  function calc() {
+    const rent = +$("rent").value || 0, price = +$("price").value || 0;
+    const downPct = (+$("down").value || 0) / 100;
+    const r = (+$("rate").value || 0) / 100 / 12, n = (+$("term").value || 0) * 12;
+    const ratio = (+$("rule").value || 0) / 100;
+    const vac = (+$("vac").value || 0) / 100, tax = +$("tax").value || 0, ins = +$("ins").value || 0;
+    const maint = (+$("maint").value || 0) / 100, capex = (+$("capex").value || 0) / 100;
+    const mgmt = (+$("mgmt").value || 0) / 100, lease = +$("lease").value || 0;
+    const hoa = +$("hoa").value || 0, util = +$("util").value || 0;
+
+    // Financing
+    const loan = price * (1 - downPct);
+    const factor = n === 0 ? 0 : (r === 0 ? 1 / n : r / (1 - Math.pow(1 + r, -n)));
+    const pi = loan * factor;
+
+    // 50% rule
+    const ruleOpex = rent * ratio;
+    const ruleNOI = rent - ruleOpex;
+    const ruleCF = ruleNOI - pi;
+
+    // Itemized budget (monthly)
+    const collected = rent * (1 - vac);
+    const itemOpex = rent * vac + tax / 12 + ins / 12 + rent * maint + rent * capex + collected * mgmt + lease / 12 + hoa + util;
+    const itemNOI = rent - itemOpex;
+    const itemCF = itemNOI - pi;
+    const itemRatio = rent > 0 ? itemOpex / rent : 0;
+
+    // Break-evens (price: max P&I / factor / equity share; rent: closed form)
+    const bePriceFrom = maxPI => (factor > 0 && downPct < 1 && maxPI > 0) ? maxPI / factor / (1 - downPct) : null;
+    const bePrice = bePriceFrom(ruleNOI);
+    const bePriceI = bePriceFrom(itemNOI);
+    const beRent = ratio < 1 ? pi / (1 - ratio) : null;
+    // itemized: rent*(1 - vac - maint - capex - mgmt*(1-vac)) = pi + fixed
+    const varShare = 1 - vac - maint - capex - mgmt * (1 - vac);
+    const fixed = tax / 12 + ins / 12 + lease / 12 + hoa + util;
+    const beRentI = varShare > 0 ? (pi + fixed) / varShare : null;
+
+    // Paint
+    document.querySelectorAll(".rulelbl").forEach(el => el.textContent = (ratio * 100).toFixed(0) + "%");
+    $("ruleOpex").textContent = fmt$(ruleOpex);
+    $("ruleOpexS").textContent = (ratio * 100).toFixed(0) + "% of " + fmt$(rent) + " gross rent";
+    $("ruleCF").textContent = fmt$(ruleCF);
+    $("itemCF").textContent = fmt$(itemCF);
+    $("itemOpex").textContent = fmt$(itemOpex);
+    $("itemRatio").textContent = rent > 0 ? fmtP1(itemRatio) : "–";
+    const gap = itemOpex - ruleOpex;
+    $("gap").textContent = (gap > 0 ? "+" : "") + fmt$(gap);
+    $("gapS").textContent = Math.abs(gap) < 0.5 ? "itemized budget matches the rule" : (gap > 0 ? "itemized runs higher than the rule" : "itemized runs lower than the rule");
+    $("noi").textContent = fmt$(ruleNOI * 12);
+    $("cap").textContent = price > 0 ? fmtP2(ruleNOI * 12 / price) : "–";
+    $("bePrice").textContent = bePrice === null ? (pi === 0 && ruleNOI > 0 ? "any (no loan)" : "–") : fmt$(bePrice);
+    $("bePriceI").textContent = bePriceI === null ? (pi === 0 && itemNOI > 0 ? "any" : "–") : fmt$(bePriceI);
+    $("beRent").textContent = beRent === null ? "–" : fmt$(beRent);
+    $("beRentI").textContent = beRentI === null ? "–" : fmt$(beRentI);
+    $("pi").textContent = fmt$(pi);
+    $("loan").textContent = fmt$(loan) + " loan";
+
+    // Verdict on the itemized budget
+    const v = $("verdict");
+    v.hidden = false;
+    let cls, txt;
+    if (itemCF >= 100) { cls = "good"; txt = "✓ Cash flows " + fmt$(itemCF) + "/month under a fully-loaded budget"; }
+    else if (itemCF >= 0) { cls = "warn"; txt = "Thin: " + fmt$(itemCF) + "/month under your itemized budget — little room for surprises"; }
+    else {
+      cls = "bad";
+      txt = "✗ Loses " + fmt$(-itemCF) + "/month under your itemized budget";
+      if (bePriceI !== null && price > bePriceI) txt += " — needs a price near " + fmt$(bePriceI);
+      else if (beRentI !== null) txt += " — needs rent near " + fmt$(beRentI);
+    }
+    if (rent > 0 && itemRatio >= 0.55) txt += " · expenses are " + fmtP1(itemRatio) + " of rent, so the " + (ratio * 100).toFixed(0) + "% rule flatters this deal";
+    else if (rent > 0 && itemRatio > 0 && itemRatio < 0.35) txt += " · expenses are only " + fmtP1(itemRatio) + " of rent — check for a missing line";
+    v.className = "badge " + cls;
+    v.textContent = txt;
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
