@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Property Comparison Calculator — Compare Deals Side by Side</title>
+<meta name="description" content="Free rental property comparison calculator: put up to three deals side by side and see cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM with the best deal highlighted on every metric. Plus a step-by-step guide to comparing rentals.">
+<link rel="canonical" href="https://apophaticstudios.github.io/rental-property-comparison.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
+<meta property="og:title" content="Rental Property Comparison Calculator — Compare Deals Side by Side">
+<meta property="og:description" content="Free rental property comparison calculator: put up to three deals side by side and see cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM with the best deal highlighted on every metric.">
+<meta property="og:url" content="https://apophaticstudios.github.io/rental-property-comparison.html">
+<meta property="og:image" content="https://apophaticstudios.github.io/og/og-comparison.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rental Property Comparison Calculator — free, compares up to three deals side by side on cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rental Property Comparison Calculator — Compare Deals Side by Side">
+<meta name="twitter:description" content="Free rental property comparison calculator: put up to three deals side by side and see cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM with the best deal highlighted on every metric.">
+<meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-comparison.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How do you compare two rental properties?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Underwrite both with the same assumptions — the same vacancy allowance, the same maintenance, CapEx and management percentages, each property's actual tax and insurance bills — then compare a full set of metrics rather than one number: monthly cash flow, cash-on-cash return, cap rate, DSCR, the 1% rule and gross rent multiplier. One deal usually makes more dollars while another earns a higher return on the cash invested; which wins depends on whether you are optimizing income or return."}},
+    {"@type": "Question", "name": "What is the most important metric when comparing rental properties?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No single metric is enough. Cash-on-cash return best answers 'which deal pays me most per dollar invested,' monthly cash flow measures the margin of safety in dollars, cap rate compares the properties themselves independent of financing, and DSCR shows how much cushion the rent has over the mortgage. Most investors screen with the 1% rule and GRM, rank with cash-on-cash and cash flow, and sanity-check with cap rate and DSCR."}},
+    {"@type": "Question", "name": "What is the difference between cap rate and cash-on-cash return?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Cap rate is the property's unleveraged yield: annual net operating income divided by price, ignoring the mortgage entirely. Cash-on-cash return is the leveraged yield: annual cash flow after the mortgage, divided by the actual cash you put in. When borrowing costs more than the property yields — common when mortgage rates are above cap rates — leverage pushes cash-on-cash below the cap rate, and the two metrics can rank the same list of deals in different orders."}},
+    {"@type": "Question", "name": "What is a good gross rent multiplier (GRM)?",
+     "acceptedAnswer": {"@type": "Answer", "text": "GRM is purchase price divided by annual gross rent, so lower means you are paying less per dollar of rent. Cash-flow-oriented markets often trade in the high single digits, while expensive coastal markets can run well into the teens. GRM ignores operating expenses, taxes and vacancy entirely, so use it only as a first-pass screen and confirm with cap rate and cash flow."}},
+    {"@type": "Question", "name": "Should I compare rental properties using the same financing assumptions?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Yes — hold down payment, rate and term constant when the question is 'which property is better,' because financing changes cash-on-cash and DSCR without changing the building. Then, once a property leads, vary the financing on that deal alone to see how the loan choice moves the numbers. The exception is when the properties genuinely command different loans, such as a condo priced at a higher rate: model each deal with the terms you were actually quoted."}}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+    --warn-bg: #fdf3e3; --warn-ink: #8a5a13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+      --warn-bg: #3a2d13; --warn-ink: #e8c477;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
+  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 680px; }
+  .dealgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+  @media (max-width: 800px) { .dealgrid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px; }
+  label { display: block; font-size: 0.8rem; color: var(--ink-2); margin: 10px 0 3px; }
+  .card label:first-of-type { margin-top: 0; }
+  input { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.93rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .results { margin-top: 22px; }
+  .tablewrap { overflow-x: auto; }
+  table.cmp { border-collapse: collapse; width: 100%; font-size: 0.92rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  table.cmp th, table.cmp td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.cmp th { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
+  table.cmp th:first-child, table.cmp td:first-child { text-align: left; }
+  table.cmp td:first-child { color: var(--ink-2); font-weight: 600; white-space: normal; }
+  table.cmp td:first-child .u { display: block; font-weight: 400; font-size: 0.75rem; color: var(--ink-3); }
+  table.cmp tr:last-child td { border-bottom: none; }
+  table.cmp td.best { background: var(--good-bg); color: var(--good-ink); font-weight: 700; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo h3 { font-size: 1rem; margin: 22px 0 6px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); text-decoration: none; }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 660px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex td, table.ex th { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); text-align: left; vertical-align: top; }
+  table.ex th { font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
+  table.ex td.n, table.ex th.n { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a></nav>
+  <header>
+    <h1>Rental Property Comparison Calculator</h1>
+    <p class="sub">Put up to three rental deals side by side and see which one wins on cash flow, cash-on-cash return, cap rate, DSCR, the 1% rule and GRM — the best deal is highlighted on every metric. Free, no signup, runs entirely in your browser. To compare only two deals, set the third price to 0.</p>
+  </header>
+
+  <div class="dealgrid">
+    <div class="card">
+      <h2>Deal A</h2>
+      <label for="name1">Nickname</label><input id="name1" type="text" value="Maple St house">
+      <label for="p1">Purchase price ($)</label><input id="p1" type="number" value="250000">
+      <label for="rent1">Monthly rent ($)</label><input id="rent1" type="number" value="2200">
+      <label for="down1">Down payment (%)</label><input id="down1" type="number" value="20" step="0.5">
+      <label for="rate1">Interest rate (% APR)</label><input id="rate1" type="number" value="6.5" step="0.05">
+      <label for="term1">Loan term (years)</label><input id="term1" type="number" value="30">
+      <label for="tax1">Property tax ($/yr)</label><input id="tax1" type="number" value="3200">
+      <label for="ins1">Insurance ($/yr)</label><input id="ins1" type="number" value="1400">
+      <label for="vac1">Vacancy (%)</label><input id="vac1" type="number" value="5" step="0.5">
+      <label for="opex1">Maintenance + CapEx + management (% of rent)</label><input id="opex1" type="number" value="18" step="0.5">
+      <label for="hoa1">HOA + landlord-paid utilities ($/mo)</label><input id="hoa1" type="number" value="0">
+    </div>
+    <div class="card">
+      <h2>Deal B</h2>
+      <label for="name2">Nickname</label><input id="name2" type="text" value="Oak Ave duplex">
+      <label for="p2">Purchase price ($)</label><input id="p2" type="number" value="320000">
+      <label for="rent2">Monthly rent ($)</label><input id="rent2" type="number" value="3100">
+      <label for="down2">Down payment (%)</label><input id="down2" type="number" value="25" step="0.5">
+      <label for="rate2">Interest rate (% APR)</label><input id="rate2" type="number" value="6.75" step="0.05">
+      <label for="term2">Loan term (years)</label><input id="term2" type="number" value="30">
+      <label for="tax2">Property tax ($/yr)</label><input id="tax2" type="number" value="4100">
+      <label for="ins2">Insurance ($/yr)</label><input id="ins2" type="number" value="1900">
+      <label for="vac2">Vacancy (%)</label><input id="vac2" type="number" value="6" step="0.5">
+      <label for="opex2">Maintenance + CapEx + management (% of rent)</label><input id="opex2" type="number" value="20" step="0.5">
+      <label for="hoa2">HOA + landlord-paid utilities ($/mo)</label><input id="hoa2" type="number" value="0">
+    </div>
+    <div class="card">
+      <h2>Deal C</h2>
+      <label for="name3">Nickname</label><input id="name3" type="text" value="Cedar Ct condo">
+      <label for="p3">Purchase price ($)</label><input id="p3" type="number" value="165000">
+      <label for="rent3">Monthly rent ($)</label><input id="rent3" type="number" value="1750">
+      <label for="down3">Down payment (%)</label><input id="down3" type="number" value="20" step="0.5">
+      <label for="rate3">Interest rate (% APR)</label><input id="rate3" type="number" value="6.5" step="0.05">
+      <label for="term3">Loan term (years)</label><input id="term3" type="number" value="30">
+      <label for="tax3">Property tax ($/yr)</label><input id="tax3" type="number" value="1500">
+      <label for="ins3">Insurance ($/yr)</label><input id="ins3" type="number" value="900">
+      <label for="vac3">Vacancy (%)</label><input id="vac3" type="number" value="5" step="0.5">
+      <label for="opex3">Maintenance + CapEx + management (% of rent)</label><input id="opex3" type="number" value="16" step="0.5">
+      <label for="hoa3">HOA + landlord-paid utilities ($/mo)</label><input id="hoa3" type="number" value="220">
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="tablewrap">
+    <table class="cmp" id="cmp">
+      <tr><th>Metric</th><th id="h1">Maple St house</th><th id="h2">Oak Ave duplex</th><th id="h3">Cedar Ct condo</th></tr>
+      <tr><td>Cash invested <span class="u">down payment + ~2% closing</span></td><td id="m_cash_1">–</td><td id="m_cash_2">–</td><td id="m_cash_3">–</td></tr>
+      <tr><td>Loan amount</td><td id="m_loan_1">–</td><td id="m_loan_2">–</td><td id="m_loan_3">–</td></tr>
+      <tr><td>Monthly P&amp;I</td><td id="m_pi_1">–</td><td id="m_pi_2">–</td><td id="m_pi_3">–</td></tr>
+      <tr><td>NOI <span class="u">per year, before the mortgage</span></td><td id="m_noi_1">–</td><td id="m_noi_2">–</td><td id="m_noi_3">–</td></tr>
+      <tr><td>Cap rate <span class="u">NOI ÷ price</span></td><td id="m_cap_1">–</td><td id="m_cap_2">–</td><td id="m_cap_3">–</td></tr>
+      <tr><td>Monthly cash flow <span class="u">after all expenses &amp; mortgage</span></td><td id="m_cf_1">–</td><td id="m_cf_2">–</td><td id="m_cf_3">–</td></tr>
+      <tr><td>Cash-on-cash <span class="u">annual cash flow ÷ cash invested</span></td><td id="m_coc_1">–</td><td id="m_coc_2">–</td><td id="m_coc_3">–</td></tr>
+      <tr><td>DSCR <span class="u">NOI ÷ debt service</span></td><td id="m_dscr_1">–</td><td id="m_dscr_2">–</td><td id="m_dscr_3">–</td></tr>
+      <tr><td>1% rule <span class="u">rent ÷ price</span></td><td id="m_one_1">–</td><td id="m_one_2">–</td><td id="m_one_3">–</td></tr>
+      <tr><td>GRM <span class="u">price ÷ annual rent — lower is better</span></td><td id="m_grm_1">–</td><td id="m_grm_2">–</td><td id="m_grm_3">–</td></tr>
+    </table>
+    </div>
+    <span class="badge good" id="verdict" hidden></span>
+
+    <div class="cta">
+      <p><strong>Comparing more than three?</strong> The Deal Analyzer Pro spreadsheet runs the full underwriting on any deal — every expense line, a 5-year projection with equity build-up, full amortization, break-even occupancy and side-by-side deal comparison — yours to keep in Excel.</p>
+      <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>How to compare rental properties</h2>
+    <p>Analyzing one deal tells you whether it clears your bar. Comparing several tells you which one actually deserves your down payment — and that is the decision you are really making, because the cash can only be spent once. A useful comparison has four rules:</p>
+    <p><strong>1. Same assumptions everywhere.</strong> Use one vacancy allowance, one maintenance-and-management percentage, and each property's <em>actual</em> tax and insurance bills. If Deal A gets 5% vacancy and Deal B gets 8% because you like Deal A, the spreadsheet is just decorating a decision you already made.</p>
+    <p><strong>2. Same financing, unless it's genuinely different.</strong> Hold down payment, rate and term constant so the buildings compete, not the loans. Then vary financing on the leader alone. The exception: when properties really are quoted different terms — condos and 2–4-unit buildings often price a notch higher — model what you were actually quoted, as the defaults below do for the duplex.</p>
+    <p><strong>3. Rank on more than one number.</strong> The deal that makes the most dollars per month is frequently not the deal that earns the most per dollar invested. Look at both, plus the property-only metrics (cap rate, GRM) that ignore your loan.</p>
+    <p><strong>4. Net, never gross.</strong> Comparing rents or prices alone is how condos with $220 HOA fees and houses in 1.8%-property-tax counties sneak to the top of the list. Every metric in the table above is computed after vacancy and operating expenses.</p>
+
+    <h2>The six numbers that decide it</h2>
+    <div class="formula">Cap rate = NOI ÷ price &nbsp;·&nbsp; Cash-on-cash = annual cash flow ÷ cash invested<br>DSCR = NOI ÷ mortgage payment &nbsp;·&nbsp; GRM = price ÷ annual gross rent</div>
+    <p><strong><a href="/cap-rate-calculator.html">Cap rate</a></strong> compares the properties themselves — what each earns per dollar of price before any mortgage. <strong>Cash-on-cash return</strong> compares your outcomes — what each deal pays per dollar of your cash after the mortgage; for most leveraged buyers it is the ranking metric. <strong>Monthly cash flow</strong> is the margin of safety in dollars: a deal can post a fine percentage on a tiny base and still leave no room for a surprise repair. <strong><a href="/dscr-loan-calculator.html">DSCR</a></strong> is how a lender will rank the same list — NOI over debt service, with 1.20+ the common bar. The <strong><a href="/">1% rule</a></strong> and <strong>GRM</strong> are price-to-rent screens (they ignore expenses entirely): rent ÷ price above 1% and a lower GRM both say you're buying rent cheaply — useful for a first pass, never for a verdict, which is why the <a href="/50-percent-rule-calculator.html">50% rule</a> exists to check the expense side.</p>
+
+    <h2>Worked example: three deals, three different winners</h2>
+    <p>The defaults above are a realistic 2026 shopping list: a $250,000 single-family house renting for $2,200; a $320,000 duplex renting for $3,100 total with 25% down at a slightly higher rate (typical for 2–4 units); and a $165,000 condo renting for $1,750 with a $220/month HOA fee and the lowest tax and insurance bills. Same market, same buyer, three stories:</p>
+    <div class="tablewrap">
+    <table class="ex">
+      <tr><th>Metric</th><th class="n">Maple St house</th><th class="n">Oak Ave duplex</th><th class="n">Cedar Ct condo</th></tr>
+      <tr><td>Cash invested</td><td class="n">$55,000</td><td class="n">$86,400</td><td class="n">$36,300</td></tr>
+      <tr><td>NOI (per year)</td><td class="n">$15,728</td><td class="n">$21,528</td><td class="n">$11,550</td></tr>
+      <tr><td>Cap rate</td><td class="n">6.29%</td><td class="n">6.73%</td><td class="n">7.00%</td></tr>
+      <tr class="total"><td>Monthly cash flow</td><td class="n">$47</td><td class="n">$237</td><td class="n">$128</td></tr>
+      <tr class="total"><td>Cash-on-cash</td><td class="n">1.02%</td><td class="n">3.30%</td><td class="n">4.24%</td></tr>
+      <tr><td>DSCR</td><td class="n">1.04</td><td class="n">1.15</td><td class="n">1.15</td></tr>
+      <tr><td>1% rule</td><td class="n">0.88%</td><td class="n">0.97%</td><td class="n">1.06%</td></tr>
+      <tr><td>GRM</td><td class="n">9.5</td><td class="n">8.6</td><td class="n">7.9</td></tr>
+    </table>
+    </div>
+    <p>The <strong>duplex makes the most money</strong> — $237 a month, the largest NOI, and the most rent per unit of risk a lender will see. The <strong>condo makes the most of your money</strong> — a 4.24% cash-on-cash return, a 7% cap rate, and it passes the 1% rule, all despite the HOA fee, because it buys rent so much more cheaply (GRM 7.9 vs 9.5). And the house — the deal most buyers would have analyzed in isolation and talked themselves into — trails on every single metric. That is the argument for comparing: <strong>the house looks acceptable alone and loses to both alternatives side by side.</strong></p>
+    <p>Which of the two winners should get the down payment? Notice the condo uses $36,300 of cash to the duplex's $86,400. An investor with about $90,000 could buy the duplex — or buy the condo and still have $50,000 toward the next deal. Comparing "one duplex" against "condo plus the option on a second property" is the real choice, and it is why cash-on-cash, not monthly dollars, is usually the tiebreaker for investors who plan to keep buying.</p>
+
+    <h2>When cap rate and cash-on-cash disagree</h2>
+    <p>With no loan, cash-on-cash roughly equals the cap rate (closing costs make it slightly lower). A mortgage moves the two apart, and the <em>direction</em> depends on how the loan's cost compares with the property's yield: financing at a rate below the cap rate levers returns up; financing above it levers them down. At 2026 rates that second case is the usual one — 30-year investment-property loans were quoting roughly <strong>7.38–7.88%, about 0.5–1.0 point above primary-residence rates</strong>, as of September 4, 2026 (The Mortgage Reports) — which is why every deal in the example shows cash-on-cash <em>below</em> its cap rate. The defaults use 6.5–6.75% as a round, well-qualified-borrower scenario; type in the rate you were actually quoted and watch what happens. At 7.5% across the board, the house flips to roughly <strong>−$88 a month</strong>, the duplex's cash flow drops to about $116, and the condo's cash-on-cash falls from 4.24% to about 1.3% — same properties, different ranking pressure, purely from financing. When rates are above cap rates, more leverage means less return, and the deals that survive are the ones that were priced right, not financed cleverly. (Buying below market and forcing the rent up is the other escape — that's the <a href="/brrrr-calculator.html">BRRRR play</a>.)</p>
+
+    <h2>Mistakes that flip a ranking</h2>
+    <p><strong>Different assumptions per deal.</strong> The subtle version: copying the listing agent's "estimated taxes" for one property and the county's actual bill for another. Pull the real tax bill and an insurance quote for each — across states, taxes alone range from about 0.3% to 1.8% of value per year, easily the difference between first and last place.</p>
+    <p><strong>Comparing gross instead of net.</strong> The condo above would look worse than the house on price-per-rent if you skipped the HOA fee — and better than it deserves if you skipped everyone's operating expenses. Net operating income is the only fair meeting point.</p>
+    <p><strong>Ignoring unequal cash.</strong> A deal that "wins" while consuming twice the capital hasn't won per dollar. Compare cash-on-cash, and think about what the leftover cash could buy.</p>
+    <p><strong>One-number shopping.</strong> Ranking purely on cap rate hands the win to rough neighborhoods and deferred maintenance, which price at high caps for a reason; ranking purely on the 1% rule does the same. High-yield-on-paper is often just risk that hasn't happened yet, so treat an outlier metric as a question, not an answer.</p>
+    <p><strong>Stopping at year one.</strong> Everything on this page is a snapshot. Rent growth, appreciation, loan paydown and eventual sale can re-rank deals over a 5-year horizon — a market with 6% rent growth beats a point of first-year yield surprisingly fast. That's a projection job, not a screening job; it's what the full spreadsheet is for.</p>
+
+    <h2>How many deals should you compare?</h2>
+    <p>More than you'd think. Experienced buy-and-hold investors talk about funnels, not finds: screen dozens of listings with the fast filters (1% rule, GRM, asking-price cap rate), run the full numbers on the handful that pass, offer on a few, and buy the one where the numbers and the inspection both hold. A side-by-side table is what keeps the funnel honest — deals compete against each other instead of against your patience. Screen fast with this page; when a deal makes the short list, underwrite it properly: line-item expenses (<a href="/50-percent-rule-calculator.html">the full list</a>), lender-style <a href="/dscr-loan-calculator.html">DSCR</a>, and — if it's a project — the <a href="/brrrr-calculator.html">BRRRR</a> or <a href="/70-percent-rule-calculator.html">flip</a> math, or the <a href="/airbnb-calculator.html">short-term-rental</a> alternative.</p>
+
+    <h2>From screening to underwriting</h2>
+    <p>This calculator is deliberately a screen: one combined expense percentage, a 2% closing-cost estimate, and a year-one snapshot. Before you write an offer on the winner, replace the shortcuts with a full model — every expense line, actual amortization, a 5-year projection with equity build-up and sale proceeds, and the same side-by-side comparison carried through all of it. That is exactly what the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> does, in Excel, yours to keep.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial or investment advice. Estimates use a single combined operating-expense percentage and a ~2% closing-cost allowance; they exclude PMI, points and rehab. Rate context: The Mortgage Reports, investment-property mortgage rates, September 4, 2026. See also: <a href="/">Rental Property ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a> · <a href="/70-percent-rule-calculator.html">70% Rule Calculator</a> · <a href="/airbnb-calculator.html">Airbnb Calculator</a> · <a href="/50-percent-rule-calculator.html">50% Rule Calculator</a>.</footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const fmtP = n => (n * 100).toFixed(2) + "%";
+  function readDeal(i) {
+    const num = id => +$(id + i).value || 0;
+    const name = $("name" + i).value.trim() || "Deal " + "ABC"[i - 1];
+    const price = num("p"), rent = num("rent");
+    const downPct = num("down") / 100, r = num("rate") / 100 / 12, n = num("term") * 12;
+    const loan = price * (1 - downPct);
+    const factor = n === 0 ? 0 : (r === 0 ? 1 / n : r / (1 - Math.pow(1 + r, -n)));
+    const pi = loan * factor;
+    const opexM = num("tax") / 12 + num("ins") / 12 + rent * num("opex") / 100 + num("hoa");
+    const noi = rent * (1 - num("vac") / 100) - opexM;
+    const cf = noi - pi;
+    const cash = price * downPct + price * 0.02;
+    return {
+      i, name, active: price > 0 && rent > 0,
+      cash, loan, pi, noiY: noi * 12, cf,
+      cap: price > 0 ? noi * 12 / price : 0,
+      coc: cash > 0 ? cf * 12 / cash : 0,
+      dscr: pi > 0 ? noi / pi : Infinity,
+      one: price > 0 ? rent / price : 0,
+      grm: rent > 0 ? price / (rent * 12) : Infinity
+    };
+  }
+  function calc() {
+    const deals = [1, 2, 3].map(readDeal);
+    const active = deals.filter(d => d.active);
+    for (const d of deals) {
+      $("h" + d.i).textContent = d.name;
+      const put = (m, txt) => $("m_" + m + "_" + d.i).textContent = txt;
+      if (!d.active) { ["cash","loan","pi","noi","cap","cf","coc","dscr","one","grm"].forEach(m => put(m, "—")); continue; }
+      put("cash", fmt$(d.cash)); put("loan", fmt$(d.loan)); put("pi", fmt$(d.pi));
+      put("noi", fmt$(d.noiY)); put("cap", fmtP(d.cap)); put("cf", fmt$(d.cf));
+      put("coc", fmtP(d.coc)); put("dscr", d.pi > 0 ? d.dscr.toFixed(2) : "no loan");
+      put("one", fmtP(d.one)); put("grm", isFinite(d.grm) ? d.grm.toFixed(1) : "—");
+    }
+    // Best-in-row highlighting at displayed precision (ties share the highlight)
+    document.querySelectorAll("td.best").forEach(td => td.classList.remove("best"));
+    if (active.length >= 2) {
+      const rows = [
+        {m: "cap",  val: d => Math.round(d.cap * 10000),            hi: true},
+        {m: "cf",   val: d => Math.round(d.cf),                     hi: true},
+        {m: "coc",  val: d => Math.round(d.coc * 10000),            hi: true},
+        {m: "dscr", val: d => d.dscr === Infinity ? Infinity : Math.round(d.dscr * 100), hi: true},
+        {m: "one",  val: d => Math.round(d.one * 10000),            hi: true},
+        {m: "grm",  val: d => isFinite(d.grm) ? Math.round(d.grm * 10) : Infinity, hi: false}
+      ];
+      for (const row of rows) {
+        const vals = active.map(row.val);
+        const best = row.hi ? Math.max(...vals) : Math.min(...vals);
+        active.forEach((d, k) => { if (vals[k] === best) $("m_" + row.m + "_" + d.i).classList.add("best"); });
+      }
+    }
+    // Verdict
+    const v = $("verdict");
+    if (active.length === 0) { v.hidden = true; return; }
+    v.hidden = false;
+    let cls, txt;
+    const byCF = [...active].sort((a, b) => b.cf - a.cf)[0];
+    const byCoC = [...active].sort((a, b) => b.coc - a.coc)[0];
+    if (active.every(d => d.cf < 0)) {
+      cls = "bad";
+      txt = "✗ Every deal here loses money as entered — the closest is " + byCF.name + " at " + fmt$(byCF.cf) + "/month. Renegotiate price or rent before choosing.";
+    } else if (active.length === 1) {
+      const d = active[0];
+      cls = d.cf >= 0 ? "good" : "bad";
+      txt = (d.cf >= 0 ? "✓ " : "✗ ") + d.name + ": " + fmt$(d.cf) + "/month cash flow, " + fmtP(d.coc) + " cash-on-cash. Add a second deal to compare.";
+    } else if (byCF.i === byCoC.i) {
+      cls = "good";
+      txt = "✓ " + byCF.name + " leads on both cash flow (" + fmt$(byCF.cf) + "/mo) and cash-on-cash (" + fmtP(byCF.coc) + ") — a clear front-runner.";
+    } else {
+      cls = "warn";
+      txt = "Trade-off: " + byCF.name + " makes the most dollars (" + fmt$(byCF.cf) + "/mo), but " + byCoC.name + " earns the most per dollar invested (" + fmtP(byCoC.coc) + " cash-on-cash). Decide which question you're asking before you offer.";
+    }
+    v.className = "badge " + cls;
+    v.textContent = txt;
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
