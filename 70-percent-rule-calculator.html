@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>70% Rule Calculator — Max Offer & Fix-and-Flip Profit (Free)</title>
-<meta name="description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), then check the full flip: net profit after financing, holding and selling costs, ROI, and break-even resale price.">
+<meta name="description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), plus full flip profit after financing, holding and selling costs.">
 <link rel="canonical" href="https://apophaticstudios.github.io/70-percent-rule-calculator.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
 <meta property="og:title" content="70% Rule Calculator — Max Offer &amp; Fix-and-Flip Profit">
-<meta property="og:description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), then check the full flip: net profit after financing, holding and selling costs, ROI, and break-even resale price.">
+<meta property="og:description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), plus full flip profit after financing, holding and selling costs.">
 <meta property="og:url" content="https://apophaticstudios.github.io/70-percent-rule-calculator.html">
 <meta property="og:image" content="https://apophaticstudios.github.io/og/og-70-rule.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="70% Rule Calculator — free, computes maximum allowable offer plus full fix-and-flip profit and ROI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="70% Rule Calculator — Max Offer &amp; Fix-and-Flip Profit">
-<meta name="twitter:description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), then check the full flip: net profit after financing, holding and selling costs, ROI, and break-even resale price.">
+<meta name="twitter:description" content="Free 70% rule calculator. Enter ARV and rehab to get your maximum allowable offer (MAO), plus full flip profit after financing, holding and selling costs.">
 <meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-70-rule.png">
 <script type="application/ld+json">
 {
@@ -36,6 +36,16 @@
      "acceptedAnswer": {"@type": "Answer", "text": "ARV stands for after-repair value: what the property should sell for once the planned renovation is complete. Investors estimate it from recent sales of comparable, already-renovated homes nearby — similar size, age, bed/bath count and condition. ARV drives everything in a flip: the maximum offer, the loan size (hard-money lenders cap loans at roughly 70–75% of ARV), and the resale assumption your profit depends on."}},
     {"@type": "Question", "name": "How much profit does the average house flip make?",
      "acceptedAnswer": {"@type": "Answer", "text": "In ATTOM's Q1 2026 U.S. Home Flipping Report, the typical flip resold for a gross profit of about $66,000 — a 25.4% gross return on the purchase price — and took 165 days. Importantly, that gross figure is simply resale price minus purchase price: it does not subtract renovation, financing, holding or selling costs, so typical net profit is considerably lower."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Rental Property ROI Calculator", "item": "https://apophaticstudios.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "70% Rule Calculator", "item": "https://apophaticstudios.github.io/70-percent-rule-calculator.html"}
   ]
 }
 </script>
@@ -57,8 +67,11 @@
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
-  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
-  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  nav.sitenav { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 10px; padding: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.sitenav::-webkit-scrollbar { display: none; }
+  nav.sitenav a { flex: 0 0 auto; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; white-space: nowrap; }
+  nav.sitenav a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.sitenav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
   header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
   .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
@@ -100,7 +113,7 @@
 </head>
 <body>
 <div class="wrap">
-  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a></nav>
+  <nav class="sitenav" aria-label="All calculators"><a href="/">ROI Calculator</a><a href="/cap-rate-calculator.html">Cap Rate</a><a href="/50-percent-rule-calculator.html">50% Rule</a><a href="/brrrr-calculator.html">BRRRR</a><a href="/dscr-loan-calculator.html">DSCR Loan</a><a href="/70-percent-rule-calculator.html" aria-current="page">70% Rule</a><a href="/airbnb-calculator.html">Airbnb</a><a href="/rental-property-comparison.html">Compare Deals</a></nav>
   <header>
     <h1>70% Rule Calculator</h1>
     <p class="sub">Get your maximum allowable offer (MAO) from the ARV and rehab budget — then go past the rule of thumb and check the whole flip: net profit after financing, holding and selling costs, cash needed, ROI and break-even resale price. Free, no signup, runs entirely in your browser.</p>

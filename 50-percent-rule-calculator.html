@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>50% Rule Calculator — Rental Property Operating Expenses &amp; Full Expense List</title>
-<meta name="description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find your break-even price and rent. Full 2026 rental expense list included.">
+<meta name="description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find break-even price and rent.">
 <link rel="canonical" href="https://apophaticstudios.github.io/50-percent-rule-calculator.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
 <meta property="og:title" content="50% Rule Calculator — Rental Operating Expenses &amp; Cash Flow">
-<meta property="og:description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find your break-even price and rent. Full 2026 rental expense list included.">
+<meta property="og:description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find break-even price and rent.">
 <meta property="og:url" content="https://apophaticstudios.github.io/50-percent-rule-calculator.html">
 <meta property="og:image" content="https://apophaticstudios.github.io/og/og-50-rule.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="50% Rule Calculator — free, estimates rental operating expenses and cash flow, compares the rule to a line-item budget">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="50% Rule Calculator — Rental Operating Expenses &amp; Cash Flow">
-<meta name="twitter:description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find your break-even price and rent. Full 2026 rental expense list included.">
+<meta name="twitter:description" content="Free 50% rule calculator: estimate rental operating expenses and cash flow in seconds, compare the rule to a line-item budget, and find break-even price and rent.">
 <meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-50-rule.png">
 <script type="application/ld+json">
 {
@@ -41,6 +41,16 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Rental Property ROI Calculator", "item": "https://apophaticstudios.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "50% Rule Calculator", "item": "https://apophaticstudios.github.io/50-percent-rule-calculator.html"}
+  ]
+}
+</script>
 <style>
   :root {
     --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
@@ -59,8 +69,11 @@
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
-  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
-  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  nav.sitenav { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 10px; padding: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.sitenav::-webkit-scrollbar { display: none; }
+  nav.sitenav a { flex: 0 0 auto; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; white-space: nowrap; }
+  nav.sitenav a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.sitenav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
   header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
   .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
@@ -109,7 +122,7 @@
 </head>
 <body>
 <div class="wrap">
-  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a></nav>
+  <nav class="sitenav" aria-label="All calculators"><a href="/">ROI Calculator</a><a href="/cap-rate-calculator.html">Cap Rate</a><a href="/50-percent-rule-calculator.html" aria-current="page">50% Rule</a><a href="/brrrr-calculator.html">BRRRR</a><a href="/dscr-loan-calculator.html">DSCR Loan</a><a href="/70-percent-rule-calculator.html">70% Rule</a><a href="/airbnb-calculator.html">Airbnb</a><a href="/rental-property-comparison.html">Compare Deals</a></nav>
   <header>
     <h1>50% Rule Calculator</h1>
     <p class="sub">Screen a rental in seconds with the 50% rule, then check it against a real line-by-line expense budget — and see the purchase price and rent where the deal breaks even. Free, no signup, runs entirely in your browser.</p>

@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Airbnb Calculator — Short-Term Rental Revenue &amp; Profit (Free)</title>
-<meta name="description" content="Free Airbnb calculator for short-term rental investors. Enter ADR, occupancy and expenses to get annual revenue, platform fees (incl. Airbnb's 15.5% host-only fee), cash flow, cash-on-cash return, break-even occupancy and an STR vs long-term rent comparison.">
+<meta name="description" content="Free Airbnb calculator. Enter ADR, occupancy and expenses to get annual revenue, platform fees, cash flow, break-even occupancy and an STR vs long-term rent comparison.">
 <link rel="canonical" href="https://apophaticstudios.github.io/airbnb-calculator.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
 <meta property="og:title" content="Airbnb Calculator — STR Revenue, Fees, Cash Flow &amp; Break-Even">
-<meta property="og:description" content="Free Airbnb calculator for short-term rental investors. Enter ADR, occupancy and expenses to get annual revenue, platform fees (incl. Airbnb's 15.5% host-only fee), cash flow, cash-on-cash return, break-even occupancy and an STR vs long-term rent comparison.">
+<meta property="og:description" content="Free Airbnb calculator. Enter ADR, occupancy and expenses to get annual revenue, platform fees, cash flow, break-even occupancy and an STR vs long-term rent comparison.">
 <meta property="og:url" content="https://apophaticstudios.github.io/airbnb-calculator.html">
 <meta property="og:image" content="https://apophaticstudios.github.io/og/og-airbnb.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Airbnb Calculator — free, computes short-term rental revenue, platform fees, cash flow and break-even occupancy">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Airbnb Calculator — STR Revenue, Fees, Cash Flow &amp; Break-Even">
-<meta name="twitter:description" content="Free Airbnb calculator for short-term rental investors. Enter ADR, occupancy and expenses to get annual revenue, platform fees (incl. Airbnb's 15.5% host-only fee), cash flow, cash-on-cash return, break-even occupancy and an STR vs long-term rent comparison.">
+<meta name="twitter:description" content="Free Airbnb calculator. Enter ADR, occupancy and expenses to get annual revenue, platform fees, cash flow, break-even occupancy and an STR vs long-term rent comparison.">
 <meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-airbnb.png">
 <script type="application/ld+json">
 {
@@ -36,6 +36,16 @@
      "acceptedAnswer": {"@type": "Answer", "text": "RevPAR — revenue per available night — is your average daily rate multiplied by your occupancy rate. A $230 ADR at 62% occupancy is a RevPAR of about $143: what each calendar night actually earns once empty nights are averaged in. It is the cleanest single number for comparing pricing-plus-occupancy performance across properties."}},
     {"@type": "Question", "name": "Is an Airbnb more profitable than a long-term rental?",
      "acceptedAnswer": {"@type": "Answer", "text": "Short-term rentals usually gross far more than long-term rent on the same property, but they also carry far higher costs: platform fees, cleaning every turnover, utilities, supplies, pricier STR insurance, and furnishing the unit up front. Industry benchmarks put STR operating expenses at roughly 30–70% of revenue (professional management alone commonly runs 20–30%). The honest comparison is bottom-line cash flow on the same property under both strategies — which this calculator shows side by side."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Rental Property ROI Calculator", "item": "https://apophaticstudios.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "Airbnb Calculator", "item": "https://apophaticstudios.github.io/airbnb-calculator.html"}
   ]
 }
 </script>
@@ -57,8 +67,11 @@
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
-  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
-  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  nav.sitenav { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 10px; padding: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.sitenav::-webkit-scrollbar { display: none; }
+  nav.sitenav a { flex: 0 0 auto; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; white-space: nowrap; }
+  nav.sitenav a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.sitenav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
   header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
   .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
@@ -100,7 +113,7 @@
 </head>
 <body>
 <div class="wrap">
-  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a></nav>
+  <nav class="sitenav" aria-label="All calculators"><a href="/">ROI Calculator</a><a href="/cap-rate-calculator.html">Cap Rate</a><a href="/50-percent-rule-calculator.html">50% Rule</a><a href="/brrrr-calculator.html">BRRRR</a><a href="/dscr-loan-calculator.html">DSCR Loan</a><a href="/70-percent-rule-calculator.html">70% Rule</a><a href="/airbnb-calculator.html" aria-current="page">Airbnb</a><a href="/rental-property-comparison.html">Compare Deals</a></nav>
   <header>
     <h1>Airbnb Calculator</h1>
     <p class="sub">Estimate what a short-term rental really earns: annual revenue from ADR, occupancy and cleaning fees, minus platform fees (including Airbnb's new 15.5% host-only fee), operating costs and the mortgage — with break-even occupancy and a head-to-head against renting the same property long-term. Free, no signup, runs entirely in your browser.</p>

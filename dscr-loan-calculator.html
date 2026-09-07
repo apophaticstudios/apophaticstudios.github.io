@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DSCR Loan Calculator — Debt Service Coverage Ratio for Rental Property (Free)</title>
-<meta name="description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way DSCR lenders do (rent ÷ PITIA), the maximum loan the rent supports at a target DSCR, the rent you need to qualify, and 2026 DSCR loan requirements.">
+<meta name="description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way lenders do (rent ÷ PITIA), the max loan the rent supports, and the rent you need to qualify.">
 <link rel="canonical" href="https://apophaticstudios.github.io/dscr-loan-calculator.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
 <meta property="og:title" content="DSCR Loan Calculator — Rent ÷ PITIA, Max Loan &amp; Rent Needed">
-<meta property="og:description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way DSCR lenders do (rent ÷ PITIA), the maximum loan the rent supports at a target DSCR, the rent you need to qualify, and 2026 DSCR loan requirements.">
+<meta property="og:description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way lenders do (rent ÷ PITIA), the max loan the rent supports, and the rent you need to qualify.">
 <meta property="og:url" content="https://apophaticstudios.github.io/dscr-loan-calculator.html">
 <meta property="og:image" content="https://apophaticstudios.github.io/og/og-dscr.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="DSCR Loan Calculator — free, computes DSCR the way lenders do, max loan the rent supports, and rent needed">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="DSCR Loan Calculator — Rent ÷ PITIA, Max Loan &amp; Rent Needed">
-<meta name="twitter:description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way DSCR lenders do (rent ÷ PITIA), the maximum loan the rent supports at a target DSCR, the rent you need to qualify, and 2026 DSCR loan requirements.">
+<meta name="twitter:description" content="Free DSCR loan calculator. Compute your debt service coverage ratio the way lenders do (rent ÷ PITIA), the max loan the rent supports, and the rent you need to qualify.">
 <meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-dscr.png">
 <script type="application/ld+json">
 {
@@ -36,6 +36,16 @@
      "acceptedAnswer": {"@type": "Answer", "text": "Typical published guidelines: minimum DSCR around 1.0 (1.25+ for the best tier), loan-to-value up to 75–80% on purchases and 70–75% on cash-out refinances, minimum credit scores in the 620–680 range with 720+ for best pricing, 3–6 months of PITIA in reserves, loan amounts from roughly $100,000 up to several million, and prepayment penalties that step down over 1–5 years. Loans can usually close in an LLC and require no personal income or tax-return documentation."}},
     {"@type": "Question", "name": "How can I raise my DSCR to qualify?",
      "acceptedAnswer": {"@type": "Answer", "text": "Four levers: put more money down (a smaller loan lowers the payment), buy down the interest rate or choose an interest-only option, reduce the non-P&I costs by shopping insurance or appealing taxes, or increase documented rent with a market-rate lease. Even a 5% larger down payment can move a marginal deal across the 1.0 or 1.25 line."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Rental Property ROI Calculator", "item": "https://apophaticstudios.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "DSCR Loan Calculator", "item": "https://apophaticstudios.github.io/dscr-loan-calculator.html"}
   ]
 }
 </script>
@@ -57,8 +67,11 @@
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
-  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
-  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  nav.sitenav { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 10px; padding: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.sitenav::-webkit-scrollbar { display: none; }
+  nav.sitenav a { flex: 0 0 auto; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; white-space: nowrap; }
+  nav.sitenav a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.sitenav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
   header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
   .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
@@ -103,7 +116,7 @@
 </head>
 <body>
 <div class="wrap">
-  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a></nav>
+  <nav class="sitenav" aria-label="All calculators"><a href="/">ROI Calculator</a><a href="/cap-rate-calculator.html">Cap Rate</a><a href="/50-percent-rule-calculator.html">50% Rule</a><a href="/brrrr-calculator.html">BRRRR</a><a href="/dscr-loan-calculator.html" aria-current="page">DSCR Loan</a><a href="/70-percent-rule-calculator.html">70% Rule</a><a href="/airbnb-calculator.html">Airbnb</a><a href="/rental-property-comparison.html">Compare Deals</a></nav>
   <header>
     <h1>DSCR Loan Calculator</h1>
     <p class="sub">Compute your debt service coverage ratio the way a DSCR lender does — gross rent divided by the full PITIA payment — and see the biggest loan the rent will support, the rent you'd need to hit a target ratio, and where your deal lands against 2026 lender tiers. Free, no signup, runs entirely in your browser.</p>

@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rental Property Comparison Calculator — Compare Deals Side by Side</title>
-<meta name="description" content="Free rental property comparison calculator: put up to three deals side by side and see cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM with the best deal highlighted on every metric. Plus a step-by-step guide to comparing rentals.">
+<meta name="description" content="Free rental property comparison calculator: compare up to three deals side by side — cap rate, cash flow, cash-on-cash, DSCR, 1% rule and GRM, best deal highlighted.">
 <link rel="canonical" href="https://apophaticstudios.github.io/rental-property-comparison.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
 <meta property="og:title" content="Rental Property Comparison Calculator — Compare Deals Side by Side">
-<meta property="og:description" content="Free rental property comparison calculator: put up to three deals side by side and see cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM with the best deal highlighted on every metric.">
+<meta property="og:description" content="Free rental property comparison calculator: compare up to three deals side by side — cap rate, cash flow, cash-on-cash, DSCR, 1% rule and GRM, best deal highlighted.">
 <meta property="og:url" content="https://apophaticstudios.github.io/rental-property-comparison.html">
 <meta property="og:image" content="https://apophaticstudios.github.io/og/og-comparison.png">
 <meta property="og:image:width" content="1200">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Rental Property Comparison Calculator — free, compares up to three deals side by side on cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rental Property Comparison Calculator — Compare Deals Side by Side">
-<meta name="twitter:description" content="Free rental property comparison calculator: put up to three deals side by side and see cap rate, cash flow, cash-on-cash, DSCR, the 1% rule and GRM with the best deal highlighted on every metric.">
+<meta name="twitter:description" content="Free rental property comparison calculator: compare up to three deals side by side — cap rate, cash flow, cash-on-cash, DSCR, 1% rule and GRM, best deal highlighted.">
 <meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-comparison.png">
 <script type="application/ld+json">
 {
@@ -36,6 +36,16 @@
      "acceptedAnswer": {"@type": "Answer", "text": "GRM is purchase price divided by annual gross rent, so lower means you are paying less per dollar of rent. Cash-flow-oriented markets often trade in the high single digits, while expensive coastal markets can run well into the teens. GRM ignores operating expenses, taxes and vacancy entirely, so use it only as a first-pass screen and confirm with cap rate and cash flow."}},
     {"@type": "Question", "name": "Should I compare rental properties using the same financing assumptions?",
      "acceptedAnswer": {"@type": "Answer", "text": "Yes — hold down payment, rate and term constant when the question is 'which property is better,' because financing changes cash-on-cash and DSCR without changing the building. Then, once a property leads, vary the financing on that deal alone to see how the loan choice moves the numbers. The exception is when the properties genuinely command different loans, such as a condo priced at a higher rate: model each deal with the terms you were actually quoted."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Rental Property ROI Calculator", "item": "https://apophaticstudios.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "Rental Property Comparison Calculator", "item": "https://apophaticstudios.github.io/rental-property-comparison.html"}
   ]
 }
 </script>
@@ -57,8 +67,11 @@
   * { box-sizing: border-box; }
   body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
-  nav.crumbs { font-size: 0.82rem; color: var(--ink-3); }
-  nav.crumbs a { color: var(--accent); text-decoration: none; }
+  nav.sitenav { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 10px; padding: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.sitenav::-webkit-scrollbar { display: none; }
+  nav.sitenav a { flex: 0 0 auto; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; white-space: nowrap; }
+  nav.sitenav a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.sitenav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
   header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 680px; }
   .dealgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
@@ -105,7 +118,7 @@
 </head>
 <body>
 <div class="wrap">
-  <nav class="crumbs"><a href="/">← Rental ROI Calculator</a></nav>
+  <nav class="sitenav" aria-label="All calculators"><a href="/">ROI Calculator</a><a href="/cap-rate-calculator.html">Cap Rate</a><a href="/50-percent-rule-calculator.html">50% Rule</a><a href="/brrrr-calculator.html">BRRRR</a><a href="/dscr-loan-calculator.html">DSCR Loan</a><a href="/70-percent-rule-calculator.html">70% Rule</a><a href="/airbnb-calculator.html">Airbnb</a><a href="/rental-property-comparison.html" aria-current="page">Compare Deals</a></nav>
   <header>
     <h1>Rental Property Comparison Calculator</h1>
     <p class="sub">Put up to three rental deals side by side and see which one wins on cash flow, cash-on-cash return, cap rate, DSCR, the 1% rule and GRM — the best deal is highlighted on every metric. Free, no signup, runs entirely in your browser. To compare only two deals, set the third price to 0.</p>
