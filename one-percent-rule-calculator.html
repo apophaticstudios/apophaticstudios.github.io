@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1% Rule Calculator — Does Your Rental Pass? (1% &amp; 2% Rule in 2026)</title>
+<meta name="description" content="Free 1% rule calculator: check any rental's rent-to-price ratio, the rent or price that passes, and the higher break-even bar deals really need at 2026 rates.">
+<link rel="canonical" href="https://apophaticstudios.github.io/one-percent-rule-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Apophatic Studios — Rental Investor Calculators">
+<meta property="og:title" content="1% Rule Calculator — Rent-to-Price Ratio &amp; the Real 2026 Bar">
+<meta property="og:description" content="Free 1% rule calculator: check any rental's rent-to-price ratio, the rent or price that passes, and the higher break-even bar deals really need at 2026 rates.">
+<meta property="og:url" content="https://apophaticstudios.github.io/one-percent-rule-calculator.html">
+<meta property="og:image" content="https://apophaticstudios.github.io/og/og-1-rule.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="1% Rule Calculator — free, computes rent-to-price ratio, the rent or price that passes 1%, and your deal's break-even ratio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="1% Rule Calculator — Rent-to-Price Ratio &amp; the Real 2026 Bar">
+<meta name="twitter:description" content="Free 1% rule calculator: check any rental's rent-to-price ratio, the rent or price that passes, and the higher break-even bar deals really need at 2026 rates.">
+<meta name="twitter:image" content="https://apophaticstudios.github.io/og/og-1-rule.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the 1% rule in real estate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 1% rule is a quick screen for rental properties: monthly gross rent should be at least 1% of the total purchase price. A $250,000 property should rent for about $2,500 a month to pass. It is a first-pass filter for deciding which deals deserve a full analysis — not a measure of profit."}},
+    {"@type": "Question", "name": "Does the 1% rule still work in 2026?",
+     "acceptedAnswer": {"@type": "Answer", "text": "As a filter, yes — as a promise of cash flow, no. With 30-year investment-property rates around 7.4–7.9% in September 2026, a deal at 20% down with expenses near 50% of rent needs roughly a 1.12% rent-to-price ratio just to break even, so a property that barely passes 1% usually still loses money each month. Meanwhile the typical US property rents for only about 0.45% of the median sale price, so genuine passers are rare and concentrated in lower-priced Midwest markets."}},
+    {"@type": "Question", "name": "What is the 2% rule in real estate?",
+     "acceptedAnswer": {"@type": "Answer", "text": "The 2% rule is a stricter version of the same screen: monthly rent of at least 2% of the purchase price. Combined with 50% expenses it implies roughly a 12% cap rate, which today exists almost only in very low-priced properties where rents have a floor but prices don't. Those deals can work, but the high ratio usually prices in heavier repairs, turnover and management effort."}},
+    {"@type": "Question", "name": "Is the 1% rule based on gross or net rent?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Gross rent. The rule compares expected monthly rent before any expenses against the purchase price (including upfront repair costs, in the careful version). Expenses, vacancy and the mortgage come later, in a full cash-flow analysis."}},
+    {"@type": "Question", "name": "What rent-to-price ratio does a rental actually need to break even?",
+     "acceptedAnswer": {"@type": "Answer", "text": "It depends on your financing and expenses: break-even ratio = (1 − down payment %) × monthly loan payment factor ÷ (1 − operating expense ratio). At 20% down, a 7.5% 30-year loan and 50% expenses that works out to about 1.12%. At 4% rates the same formula gave 0.76% — which is why the 1% rule felt generous in the 2010s and feels impossible now. A bigger down payment or cheaper money lowers the bar."}},
+    {"@type": "Question", "name": "Where do properties still meet the 1% rule?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Mostly lower-priced Midwest markets. BiggerPockets' summer 2026 rent-to-payment study of 54 metros found the Midwest was the only region where average rent roughly covered the full mortgage payment, led by Detroit, with Cleveland, St. Louis, Cincinnati, Indianapolis and Columbus close behind; coastal metros like San Jose, Los Angeles and Seattle came in far below."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Rental Property ROI Calculator", "item": "https://apophaticstudios.github.io/"},
+    {"@type": "ListItem", "position": 2, "name": "1% Rule Calculator", "item": "https://apophaticstudios.github.io/one-percent-rule-calculator.html"}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #1a2233; --ink-2: #5a6478; --ink-3: #8b93a7;
+    --line: #e3e6ec; --accent: #2456c8; --accent-ink: #ffffff;
+    --good-bg: #e7f4ec; --good-ink: #176639; --bad-bg: #fdeaea; --bad-ink: #a02020;
+    --warn-bg: #fdf3e3; --warn-ink: #8a5a13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121722; --surface: #1b2231; --ink: #eef1f7; --ink-2: #aab3c5; --ink-3: #7c8598;
+      --line: #2a3245; --accent: #5b8def; --accent-ink: #0d1420;
+      --good-bg: #163524; --good-ink: #7fd6a4; --bad-bg: #3a1a1a; --bad-ink: #f0a0a0;
+      --warn-bg: #3a2d13; --warn-ink: #e8c477;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 60px; }
+  nav.sitenav { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 10px; padding: 2px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav.sitenav::-webkit-scrollbar { display: none; }
+  nav.sitenav a { flex: 0 0 auto; font-size: 0.78rem; font-weight: 600; color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; white-space: nowrap; }
+  nav.sitenav a:hover { color: var(--accent); border-color: var(--accent); }
+  nav.sitenav a[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  header h1 { font-size: 1.7rem; margin: 18px 0 6px; }
+  header p.sub { color: var(--ink-2); margin: 0 0 26px; max-width: 640px; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; align-items: start; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  label { display: block; font-size: 0.82rem; color: var(--ink-2); margin: 12px 0 4px; }
+  label:first-of-type { margin-top: 0; }
+  input { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 0.95rem; }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .tile .k { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tile .v { font-size: 1.55rem; font-weight: 700; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .tile .s { font-size: 0.78rem; color: var(--ink-2); margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; margin-top: 14px; }
+  .badge.good { background: var(--good-bg); color: var(--good-ink); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad-ink); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn-ink); }
+  .cta { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .cta p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .cta strong { color: var(--ink); }
+  .btn { background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 9px; white-space: nowrap; }
+  section.seo { margin-top: 40px; max-width: 720px; }
+  section.seo h2 { font-size: 1.15rem; margin-top: 30px; }
+  section.seo p, section.seo li { color: var(--ink-2); }
+  section.seo strong { color: var(--ink); }
+  section.seo a { color: var(--accent); }
+  .formula { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 1.05rem; font-weight: 600; margin: 14px 0; overflow-x: auto; }
+  .tablewrap { overflow-x: auto; }
+  table.ex { border-collapse: collapse; width: 100%; max-width: 560px; margin: 10px 0 4px; font-size: 0.9rem; }
+  table.ex th { padding: 6px 10px; border-bottom: 2px solid var(--line); color: var(--ink-3); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; text-align: left; }
+  table.ex th:not(:first-child) { text-align: right; }
+  table.ex td { padding: 6px 10px; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+  table.ex td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  table.ex tr.total td { font-weight: 700; color: var(--ink); }
+  footer { margin-top: 40px; font-size: 0.78rem; color: var(--ink-3); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="sitenav" aria-label="All calculators"><a href="/">ROI Calculator</a><a href="/cap-rate-calculator.html">Cap Rate</a><a href="/one-percent-rule-calculator.html" aria-current="page">1% Rule</a><a href="/50-percent-rule-calculator.html">50% Rule</a><a href="/brrrr-calculator.html">BRRRR</a><a href="/dscr-loan-calculator.html">DSCR Loan</a><a href="/70-percent-rule-calculator.html">70% Rule</a><a href="/airbnb-calculator.html">Airbnb</a><a href="/rental-property-comparison.html">Compare Deals</a></nav>
+  <header>
+    <h1>1% Rule Calculator</h1>
+    <p class="sub">Enter price and rent to get the rent-to-price ratio, the rent or price that would pass the 1% rule — and, more useful in 2026, the ratio your deal actually needs to break even at today's rates. Free, no signup, runs entirely in your browser.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Your deal</h2>
+      <label for="price">Purchase price ($)</label><input id="price" type="number" value="250000">
+      <label for="rent">Monthly rent ($)</label><input id="rent" type="number" value="2200">
+      <label for="down">Down payment (%)</label><input id="down" type="number" value="20" step="0.5">
+      <label for="rate">Interest rate (% APR)</label><input id="rate" type="number" value="7.5" step="0.05">
+      <label for="term">Loan term (years)</label><input id="term" type="number" value="30">
+      <label for="opex">Operating expenses, all-in (% of rent)</label><input id="opex" type="number" value="50" step="1">
+    </div>
+
+    <div>
+      <div class="tiles">
+        <div class="tile"><div class="k">Rent-to-price ratio</div><div class="v" id="ratio">–</div><div class="s">monthly rent ÷ purchase price</div></div>
+        <div class="tile"><div class="k">Rent needed for 1%</div><div class="v" id="rneed">–</div><div class="s" id="rneedS">per month at this price</div></div>
+        <div class="tile"><div class="k">Max price at 1%</div><div class="v" id="pmax">–</div><div class="s" id="pmaxS">at your current rent</div></div>
+        <div class="tile"><div class="k">Your break-even ratio</div><div class="v" id="be">–</div><div class="s" id="beS">the bar this financing really sets</div></div>
+        <div class="tile"><div class="k">Est. monthly cash flow</div><div class="v" id="cf">–</div><div class="s" id="cfS">rent − expenses − P&amp;I</div></div>
+        <div class="tile"><div class="k">Monthly P&amp;I</div><div class="v" id="pi">–</div><div class="s" id="piS">principal &amp; interest</div></div>
+      </div>
+      <span class="badge good" id="verdict" hidden></span>
+
+      <div class="cta">
+        <p><strong>The 1% rule decides what to look at — not what to buy.</strong> The Deal Analyzer Pro spreadsheet runs the full underwrite: cash flow after every expense line, cap rate, cash-on-cash, DSCR, a 5-year projection with equity build-up and full amortization — yours to keep in Excel.</p>
+        <a class="btn" href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Get Deal Analyzer Pro →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="seo">
+    <h2>What is the 1% rule?</h2>
+    <p>The 1% rule is the fastest screen in rental real estate: a property is worth a closer look if the <strong>monthly gross rent is at least 1% of the purchase price</strong> (in the careful version, purchase price plus upfront repairs).</p>
+    <div class="formula">Rent-to-price ratio = Monthly rent ÷ Purchase price × 100 &nbsp;→&nbsp; pass at ≥ 1%</div>
+    <p>A $250,000 house must rent for about $2,500/month to pass; a $2,200 rent passes only up to a $220,000 price. The rule uses <strong>gross</strong> rent — before vacancy, expenses or the mortgage — which is exactly why it can only ever be a filter. It answers "should I bother running the numbers?", not "will this make money?". For the second question you need a real <a href="/">cash-flow analysis</a>.</p>
+
+    <h2>A worked example — and what the rule can't see</h2>
+    <p>Take the default deal above: $250,000 purchase, $2,200/month rent, 20% down at 7.5% on a 30-year loan, with all-in operating costs (vacancy, taxes, insurance, maintenance, CapEx, management) at 50% of rent:</p>
+    <div class="tablewrap">
+    <table class="ex">
+      <tr><td>Rent-to-price ratio ($2,200 ÷ $250,000)</td><td>0.88%</td></tr>
+      <tr><td>1% rule verdict</td><td>Fails — needs $2,500 rent</td></tr>
+      <tr><td>Max price the rule allows at $2,200 rent</td><td>$220,000</td></tr>
+      <tr><td>Loan at 20% down</td><td>$200,000</td></tr>
+      <tr><td>Monthly P&amp;I (7.5%, 30 yr)</td><td>$1,398</td></tr>
+      <tr><td>Rent left after 50% expenses</td><td>$1,100</td></tr>
+      <tr class="total"><td>Estimated monthly cash flow</td><td>−$298</td></tr>
+      <tr class="total"><td>Break-even rent-to-price ratio</td><td>1.12%</td></tr>
+    </table>
+    </div>
+    <p>The interesting number is the last one. At this financing the deal doesn't break even at 1% — it breaks even at <strong>1.12%</strong> ($2,797 rent on a $250,000 price). That gap between the folklore number and the real bar is what the calculator's "your break-even ratio" tile computes for <em>your</em> rate, down payment and expense assumption.</p>
+
+    <h2>Why 1% used to mean cash flow — and why it doesn't anymore</h2>
+    <p>Pair the 1% rule with the <a href="/50-percent-rule-calculator.html">50% rule</a> and a passing deal generates NOI of about 6% of the purchase price per year (12 × 1% × 50%). Whether that cash-flows depends entirely on what the debt costs — and that's what changed. The annual cost of a 30-year loan (the "mortgage constant") was about 5.7% of the balance at 4% rates; at 7.5% it's 8.4%. Same rule, same property, opposite result:</p>
+    <div class="tablewrap">
+    <table class="ex">
+      <tr><th>30-yr rate</th><th>Annual P&amp;I per $100k loan</th><th>Break-even ratio, 20% down</th><th>25% down</th></tr>
+      <tr><td>4%</td><td>$5,729</td><td>0.76%</td><td>0.72%</td></tr>
+      <tr><td>5%</td><td>$6,442</td><td>0.86%</td><td>0.81%</td></tr>
+      <tr><td>6%</td><td>$7,195</td><td>0.96%</td><td>0.90%</td></tr>
+      <tr><td>6.5%</td><td>$7,584</td><td>1.01%</td><td>0.95%</td></tr>
+      <tr><td>7%</td><td>$7,981</td><td>1.06%</td><td>1.00%</td></tr>
+      <tr><td>7.5%</td><td>$8,391</td><td>1.12%</td><td>1.05%</td></tr>
+      <tr><td>8%</td><td>$8,805</td><td>1.17%</td><td>1.10%</td></tr>
+    </table>
+    </div>
+    <p><em>Break-even ratios assume a 30-year loan and all-in operating expenses of 50% of rent; formula: (1 − down%) × monthly payment factor ÷ (1 − expense ratio).</em></p>
+    <p>At the 4–5% rates of the 2010s, a deal at 0.8–0.9% could still cash flow — the 1% rule had margin built in. As of September 8, 2026, 30-year investment-property rates run about <strong>7.40–7.90%</strong> (roughly 0.5–1 point above the ~6.9% primary-residence rate, quoted for a strong borrower with 40% down, per The Mortgage Reports). At those rates the honest version of the 1% rule is closer to a <strong>1.1–1.2% rule at 20% down</strong>. Bigger down payments lower the bar — and an all-cash buyer only needs rent to clear expenses. Lenders run a version of the same test as <a href="/dscr-loan-calculator.html">DSCR</a>; a deal near its break-even ratio will also sit near the 1.0–1.2 DSCR floor most lenders want.</p>
+
+    <h2>What the typical property actually rents for in 2026</h2>
+    <p>Nationally, the rule fails before you even reach the mortgage. The median existing home sold for <strong>$434,100</strong> in July 2026 (up 2.0% year over year, the 37th straight month of increases, per NAR), while the typical US asking rent was <strong>$1,962</strong> (Zillow Observed Rent Index, up 2.3% year over year). That's a rent-to-price ratio of about <strong>0.45%</strong> — under half the rule — and even using the higher single-family rent of $2,314 it's only 0.53%. This is why 1% deals are hunted, not browsed: they live where prices are low relative to rents, not in the typical listing. Regional medians tell you where to look — the Midwest's $342,900 median price versus $622,200 in the West is most of the story.</p>
+
+    <h2>Where deals still pass</h2>
+    <p>BiggerPockets' summer 2026 rent-to-payment study (54 metros, July 2026) compared average market rent against the full monthly payment — principal, interest, taxes and insurance — and found the average metro covered only about <strong>80%</strong> of the payment. The Midwest was the only region at roughly full coverage (1.01), led by <strong>Detroit</strong> at 1.99, where the average home value near $72,000 against ~$1,280 rent works out to about a 1.8% monthly rent-to-price ratio; Cleveland, St. Louis, Cincinnati, Indianapolis and Columbus clustered next. At the other end, San Jose (0.39), Austin (0.40), Los Angeles and Seattle (0.49) don't come close. Two cautions before you book a flight: low-priced properties carry proportionally heavier repair, turnover and CapEx loads — check every line against the <a href="/50-percent-rule-calculator.html">rental expense list</a> — and metro averages hide block-by-block variation that only local knowledge catches. The other route to a passing ratio is to manufacture it: buy under market, renovate, and let the <a href="/brrrr-calculator.html">BRRRR math</a> reset your basis.</p>
+
+    <h2>The 2% rule (and where it came from)</h2>
+    <p>The 2% rule is the same screen with a stricter bar — and with 50% expenses it implies roughly a <strong>12% cap rate</strong>, double the 1% rule's 6% (see how the rules chain together on our <a href="/cap-rate-calculator.html">cap rate</a> page). It dates from the years after 2008, when foreclosure-heavy markets sold houses for less than the cost to build them while rents barely moved. Today 2% appears almost exclusively in very low-priced properties, because rents have a floor and prices don't: a $60,000 house renting for $1,100 hits 1.8% without being a bargain. Treat a very high ratio as information, not free money — it usually prices in condition, tenant turnover, collections risk and management effort that a percentage can't see.</p>
+
+    <h2>1% rule vs. 50% rule vs. cap rate</h2>
+    <p>The three classic screens check different sides of the same deal. The <strong>1% rule</strong> tests whether the income is big enough relative to the price. The <strong>50% rule</strong> tests whether you're being honest about operating costs. <strong>Cap rate</strong> combines both into an unleveraged yield — and passing 1% with 50% expenses is arithmetically the same as a 6% cap. None of them see your loan, which in 2026 is where deals die; that's what the break-even tile above adds. When a deal clears the screens, run it through the <a href="/">free ROI calculator</a> for cash flow, cash-on-cash and DSCR — and if you're choosing among several, put them side by side in the <a href="/rental-property-comparison.html">deal comparison calculator</a>.</p>
+
+    <h2>What the rule misses</h2>
+    <p>Everything except price and rent. Property taxes that range from 0.33% (Hawaii) to 1.84% (Illinois) of value per year, insurance that differs by multiples between states, HOA dues, condition and deferred CapEx, appreciation and rent growth, your financing — none of it is in the ratio. Two properties at exactly 1.0% can be a keeper and a money pit. Use the rule for what it's good at — killing obvious non-starters in seconds while you're scanning listings — and underwrite the survivors properly. That full underwrite, with every expense line, a 5-year projection, amortization and equity build-up, is what the <a href="https://apophatic.gumroad.com/l/rental-property-analyzer" rel="noopener">Deal Analyzer Pro spreadsheet</a> is built for.</p>
+  </section>
+
+  <footer>For educational purposes only — not financial or investment advice. Market figures cited as of their publication dates (NAR and Zillow July-2026 reports; The Mortgage Reports rates, Sept 8, 2026; BiggerPockets summer 2026 study) and will change. See also: <a href="/">Rental Property ROI Calculator</a> · <a href="/cap-rate-calculator.html">Cap Rate Calculator</a> · <a href="/50-percent-rule-calculator.html">50% Rule Calculator</a> · <a href="/brrrr-calculator.html">BRRRR Calculator</a> · <a href="/dscr-loan-calculator.html">DSCR Loan Calculator</a> · <a href="/70-percent-rule-calculator.html">70% Rule Calculator</a> · <a href="/airbnb-calculator.html">Airbnb Calculator</a> · <a href="/rental-property-comparison.html">Deal Comparison Calculator</a>.</footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt$ = n => (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const fmtP = n => (n * 100).toFixed(2) + "%";
+  function calc() {
+    const price = +$("price").value || 0, rent = +$("rent").value || 0;
+    const d = (+$("down").value || 0) / 100;
+    const m = (+$("rate").value || 0) / 100 / 12, nper = (+$("term").value || 0) * 12;
+    const e = (+$("opex").value || 0) / 100;
+    const loan = Math.max(price * (1 - d), 0);
+    const fac = nper === 0 ? 0 : (m === 0 ? 1 / nper : m / (1 - Math.pow(1 + m, -nper)));
+    const pi = loan * fac;
+    const ratio = price > 0 ? rent / price : null;
+    const rneed = price * 0.01;
+    const pmax = rent * 100;
+    const cf = rent * (1 - e) - pi;
+    const beRent = e < 1 ? pi / (1 - e) : null;              // rent where cash flow = 0
+    const beRatio = (beRent !== null && price > 0) ? beRent / price : null;
+    const bePrice = (e < 1 && (1 - d) * fac > 0) ? rent * (1 - e) / ((1 - d) * fac) : null;
+
+    $("ratio").textContent = ratio !== null ? fmtP(ratio) : "–";
+    $("rneed").textContent = price > 0 ? fmt$(rneed) : "–";
+    $("rneedS").textContent = price > 0 ? (rent >= rneed ? "you clear it by " + fmt$(rent - rneed) + "/mo" : "you're " + fmt$(rneed - rent) + "/mo short") : "per month at this price";
+    $("pmax").textContent = rent > 0 ? fmt$(pmax) : "–";
+    $("pmaxS").textContent = rent > 0 ? "at your " + fmt$(rent) + " rent" : "at your current rent";
+    if (e >= 1) { $("be").textContent = "–"; $("beS").textContent = "expenses eat all the rent"; }
+    else if (pi === 0) { $("be").textContent = "0.00%"; $("beS").textContent = "no loan — any rent covering expenses works"; }
+    else { $("be").textContent = beRatio !== null ? fmtP(beRatio) : "–"; $("beS").textContent = beRent !== null ? "break-even rent " + fmt$(beRent) + "/mo" : "the bar this financing really sets"; }
+    $("cf").textContent = fmt$(cf);
+    $("cfS").textContent = "at " + Math.round(e * 100) + "% expenses + P&I";
+    $("pi").textContent = fmt$(pi);
+    $("piS").textContent = loan > 0 && pi > 0 ? "on a " + fmt$(loan) + " loan" : "no loan payment";
+
+    const v = $("verdict");
+    if (price <= 0 || rent <= 0) { v.hidden = true; return; }
+    v.hidden = false;
+    const pass1 = ratio >= 0.01;
+    if (cf >= 0 && pass1) { v.className = "badge good"; v.textContent = "✓ Passes the 1% rule and cash flows about " + fmt$(cf) + "/month at your assumptions"; }
+    else if (cf >= 0) { v.className = "badge good"; v.textContent = "✓ Fails the 1% rule but still cash flows about " + fmt$(cf) + "/month — your financing carries it; underwrite fully before trusting it"; }
+    else if (pass1) { v.className = "badge warn"; v.textContent = "△ Passes the 1% rule but still loses about " + fmt$(-cf) + "/month — at this financing the real bar is " + (beRatio !== null ? fmtP(beRatio) : "higher"); }
+    else { v.className = "badge bad"; v.textContent = "✗ Fails the 1% rule and loses about " + fmt$(-cf) + "/month — needs rent near " + (beRent !== null ? fmt$(beRent) : "–") + (bePrice !== null ? " or a price near " + fmt$(bePrice) : ""); }
+  }
+  document.querySelectorAll("input").forEach(i => i.addEventListener("input", calc));
+  calc();
+</script>
+</body>
+</html>
